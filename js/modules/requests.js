@@ -75,15 +75,20 @@ export const getAllRequestsDelivered2DaysAgo = async()=>{
     let dataUpdate = []
 
     data.forEach(request => {
-        
-        let diferencia = diffDays(request.date_wait, request.date_delivery)
-        if(diferencia == -2) dataUpdate.push({
 
-            codigo_pedido: request.code_request,
-            codigo_cliente: request.code_client,
-            fecha_esperada: request.date_wait,
-            fecha_entrega: request.date_delivery
-
-        })
+        if (request.date_delivery != null){
+            let diferencia = diffDays(request.date_wait, request.date_delivery)
+            if(diferencia >= 2) dataUpdate.push({
+    
+                codigo_pedido: request.code_request,
+                codigo_cliente: request.code_client,
+                fecha_esperada: request.date_wait,
+                fecha_entrega: request.date_delivery
+            })
+        }
     })
+
+    return dataUpdate
 }
+
+

@@ -53,5 +53,15 @@ export const getAllNotSalesRepresentative = async()=>{
             puesto: employee.position        
         })
     })
-   return dataUpdate
+   //return dataUpdate
+}
+
+
+
+//Obtener la informacion de un empleado por su codigo
+
+export const getClientsEmploy = async()=>{
+    let res = await fetch ("http://localhost:5501/clients")
+    let dataClients = res.json()
+    return dataClients
 }
