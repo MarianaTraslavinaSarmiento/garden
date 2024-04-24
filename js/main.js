@@ -18,7 +18,8 @@ import {
     getAllClientsMadePayment2008,
     getAllRequestsDeliveredLate,
     getAllRequestsDelivered2DaysAgo,
-    getAllRequestsRejectedIn2009
+    getAllRequestsRejectedIn2009,
+    getAllRequestOfJanuary
 }from "./modules/requests.js"
 
 // console.log(await getAllOfficesFromSpainCityAndMovil());
@@ -30,4 +31,4 @@ import {
 // console.log(await getAllRequestsDeliveredLate())
 //console.log(await getAllRequestsDelivered2DaysAgo())
 //console.log(await getAllRequestsRejectedIn2009());
-
+console.log(await getAllRequestOfJanuary())

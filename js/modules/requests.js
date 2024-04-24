@@ -110,4 +110,14 @@ export const getAllRequestsRejectedIn2009 = async()=>{
 
 //12.Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
 
+export const getAllRequestOfJanuary = async()=>{
+    let res = await fetch("http://localhost:5508/requests")
+    let data = await res.json()
+    let dataUpdate = []
 
+    data.forEach(request =>{
+        (request.date_delivery.length-1 == "1") ? dataUpdate.push(request) : undefined
+    })
+
+    return dataUpdate
+}
