@@ -1,3 +1,5 @@
+import { diffDays } from "@formkit/tempo"
+
 //7.Devuelve un listado con los distintos estados por los que puede pasar un pedido.
 
 export const statusRequests = async()=>{
@@ -65,3 +67,23 @@ export const getAllRequestsDeliveredLate = async()=>{
 
 }
 
+//10. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos dos días antes de la fecha esperada.
+
+export const getAllRequestsDelivered2DaysAgo = async()=>{
+    let res = await fetch ("http://localhost:5508/requests")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(request => {
+        
+        let diferencia = diffDays(request.date_wait, request.date_delivery)
+        if(diferencia == -2) dataUpdate.push({
+
+            codigo_pedido: request.code_request,
+            codigo_cliente: request.code_client,
+            fecha_esperada: request.date_wait,
+            fecha_entrega: request.date_delivery
+
+        })
+    })
+}

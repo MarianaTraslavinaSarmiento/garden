@@ -12,4 +12,3 @@ export const getAllClientsFromSpain = async()=>{
 
     return dataUpdate
 }
-
