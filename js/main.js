@@ -14,7 +14,8 @@ import {
 }from "./modules/clients.js"
 
 import {
-    statusRequests
+    statusRequests,
+    getAllClientsMadePayment2008
 }from "./modules/requests.js"
 
 // console.log(await getAllOfficesFromSpainCityAndMovil());
@@ -22,4 +23,5 @@ import {
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
 
 // console.log(await getAllClientsFromSpain())
-console.log(await statusRequests())
+// console.log(await statusRequests())
+console.log(await getAllClientsMadePayment2008())
