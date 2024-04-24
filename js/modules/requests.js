@@ -32,3 +32,36 @@ export const getAllClientsMadePayment2008 = async()=>{
     return arrayConvertido
 
 }
+
+
+//9. Devuelve un listado con el código de pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
+
+export const getAllRequestsDeliveredLate = async()=>{
+
+    let res = await fetch ("http://localhost:5508/requests")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(request =>{
+
+        let {date_wait, date_delivery} = request;
+
+        let fechaEsperada = Date.parse(date_wait)
+        let fechaEntrega = Date.parse(date_delivery)
+
+        if (fechaEntrega > fechaEsperada) {
+            dataUpdate.push({
+                codigo_pedido: request.code_request,
+                codigo_cliente: request.code_client,
+                fecha_esperada: request.date_wait,
+                fecha_entrega: request.date_delivery
+            });
+
+        }
+
+    })
+
+    return dataUpdate
+
+}
+
