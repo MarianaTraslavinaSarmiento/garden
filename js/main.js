@@ -17,7 +17,8 @@ import {
     statusRequests,
     getAllClientsMadePayment2008,
     getAllRequestsDeliveredLate,
-    getAllRequestsDelivered2DaysAgo
+    getAllRequestsDelivered2DaysAgo,
+    getAllRequestsRejectedIn2009
 }from "./modules/requests.js"
 
 // console.log(await getAllOfficesFromSpainCityAndMovil());
@@ -27,4 +28,6 @@ import {
 // console.log(await getAllClientsFromSpain())
 // console.log(await statusRequests())
 // console.log(await getAllRequestsDeliveredLate())
-console.log(await getAllRequestsDelivered2DaysAgo())
+//console.log(await getAllRequestsDelivered2DaysAgo())
+//console.log(await getAllRequestsRejectedIn2009());
+

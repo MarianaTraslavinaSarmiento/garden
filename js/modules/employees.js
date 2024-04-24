@@ -60,8 +60,8 @@ export const getAllNotSalesRepresentative = async()=>{
 
 //Obtener la informacion de un empleado por su codigo
 
-export const getClientsEmploy = async()=>{
-    let res = await fetch ("http://localhost:5501/clients")
-    let dataClients = res.json()
+export const getEmployByCode = async()=>{
+    let res = await fetch ("http://localhost:5502/employees")
+    let dataClients = await res.json()
     return dataClients
 }

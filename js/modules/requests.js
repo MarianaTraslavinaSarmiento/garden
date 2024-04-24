@@ -92,3 +92,22 @@ export const getAllRequestsDelivered2DaysAgo = async()=>{
 }
 
 
+//11. Devuelve un listado de todos los pedidos que fueron rechazados en 2009.
+
+export const getAllRequestsRejectedIn2009 = async()=>{
+    let res = await fetch("http://localhost:5508/requests")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(request =>{
+        if (request.date_request.startsWith("2009")&&request.status=='Rechazado'){
+            dataUpdate.push(request)}
+    })
+
+    return dataUpdate
+
+}
+
+//12.Devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
+
+
