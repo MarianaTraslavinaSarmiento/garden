@@ -13,5 +13,23 @@ export const getAllClientsFromSpain = async()=>{
     return dataUpdate
 }
 
-//Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
+//16. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y cuyo representante de ventas tenga el código de empleado 11 o 30.
+
+export const getAllClientsFromSpainAndRepresentative11Or30 = async ()=> {
+    let res = await fetch ("http://localhost:5501/clients?city=Madrid")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(client => {
+
+        if (client.code_employee_sales_manager == '11' || client.code_employee_sales_manager == '30'){
+            dataUpdate.push(client)
+        }
+
+    })
+
+    return dataUpdate
+
+}
 
