@@ -1,4 +1,5 @@
 import {getAllRepresentatives} from "./employees.js"
+import {getAllPayments} from "./payments.js"
 
 
 //6. Devuelve un listado con el nombre de los todos los clientes españoles.
@@ -54,6 +55,7 @@ export const getAllClientsAndRepresentative = async()=>{
         for (let representative of allRepresentatives){
             if (representative.codigo == client.code_employee_sales_manager){
                 dataUpdate.push({
+                    codigo_cliente: client.client_code,
                     nombre_cliente: client.client_name,
                     nombre_representante: representative.nombre,
                     apellidos_representante: representative.apellidos
@@ -64,3 +66,36 @@ export const getAllClientsAndRepresentative = async()=>{
 
     return dataUpdate
 }
+
+
+//2. Muestra el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes de ventas.
+
+export const getAllClientsMadePaymentsAndNameRepresentative = async()=>{
+
+    let dataUpdate = new Set()
+    let clientsAndRepresentatives = await getAllClientsAndRepresentative()
+    let allPayments = await getAllPayments()
+
+
+    for (let payment of allPayments){
+        for(let cr of clientsAndRepresentatives){
+
+            if (cr.codigo_cliente == payment.code_client){
+                dataUpdate.add(JSON.stringify(
+                    {
+                    nombre_cliente: cr.nombre_cliente,
+                    nombre_representante: cr.nombre_representante,
+                    apellidos_representante: cr.apellidos_representante
+                }))
+            }
+
+        }
+    }
+
+    dataUpdate = Array.from(dataUpdate).map(val => JSON.parse(val))
+
+    return dataUpdate
+}
+
+
+

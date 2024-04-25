@@ -35,3 +35,18 @@ export const getAllPaymentTypes = async()=>{
 }
 
 
+// MODULOS
+
+export const getAllPayments = async() =>{
+    let res = await fetch("http://localhost:5505/payments")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(payment =>{
+            dataUpdate.push(payment)
+        }
+    )
+
+    return dataUpdate
+
+}
