@@ -33,3 +33,10 @@ export const getAllOfficesFromSpainCityAndMovil = async() =>{
 }
 
 
+//MODULOS 
+
+export const getAllOffices = async() =>{
+    let res = await fetch("http://localhost:5504/offices")
+    let data = await res.json()
+    return data
+}

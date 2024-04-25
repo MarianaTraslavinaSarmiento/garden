@@ -14,7 +14,11 @@ import {
     getAllClientsFromSpain,
     getAllClientsFromSpainAndRepresentative11Or30,
     getAllClientsAndRepresentative,
-    getAllClientsMadePaymentsAndNameRepresentative
+    getAllClientsMadePaymentsAndNameRepresentative,
+    getAllClientNOTMadePaymentsAndNameRepresentative,
+    getAllClientsThatMadePaymentsAndOfficeRepresentative,
+    getAllClientsThatNotMadePaymentsAndOfficeRepresentative
+
 }from "./modules/clients.js"
 
 import {
@@ -53,9 +57,11 @@ import {
 
 // -------------------------- CONSULTAS MULTITABLA -------------------------------
 
-//console.log(await getAllClientsAndRepresentative())
-console.log(await getAllClientsMadePaymentsAndNameRepresentative())
-
+//console.log(await getAllClientsAndRepresentative())  //1
+//console.log(await getAllClientsMadePaymentsAndNameRepresentative()) //2
+// console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
+//console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
+console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
 
 
 // -------------------------- MODULOS -------------------------------

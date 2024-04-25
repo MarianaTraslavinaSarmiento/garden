@@ -80,6 +80,7 @@ export const getAllRepresentatives = async()=>{
             codigo: representative.employee_code,
             nombre: representative.name,
             apellidos: `${representative.lastname1} ${representative.lastname2}`,
+            codigo_oficina: representative.code_office
         })
     })
 
