@@ -1,3 +1,6 @@
+import {getAllRepresentatives} from "./employees.js"
+
+
 //6. Devuelve un listado con el nombre de los todos los clientes españoles.
 
 export const getAllClientsFromSpain = async()=>{
@@ -33,3 +36,31 @@ export const getAllClientsFromSpainAndRepresentative11Or30 = async ()=> {
 
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------
+
+//CONSULTAS MULTITABLA
+
+//.1 Obtén un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
+
+
+
+export const getAllClientsAndRepresentative = async()=>{
+    let res = await fetch ("http://localhost:5501/clients")
+    let data = await res.json()
+    let dataUpdate = []
+    let allRepresentatives = await getAllRepresentatives()
+
+    for (let client of data){
+        for (let representative of allRepresentatives){
+            if (representative.codigo == client.code_employee_sales_manager){
+                dataUpdate.push({
+                    nombre_cliente: client.client_name,
+                    nombre_representante: representative.nombre,
+                    apellidos_representante: representative.apellidos
+                })
+            }
+        }
+    }
+
+    return dataUpdate
+}

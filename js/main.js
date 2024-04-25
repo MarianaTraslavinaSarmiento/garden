@@ -6,12 +6,14 @@ import{
 import {
     getAllEmployeesWithBossAndCodeSeven,
     getAllInformationBoss,
-    getAllNotSalesRepresentative
+    getAllNotSalesRepresentative,
+    getAllRepresentatives
 }from "./modules/employees.js"
 
 import {
     getAllClientsFromSpain,
-    getAllClientsFromSpainAndRepresentative11Or30
+    getAllClientsFromSpainAndRepresentative11Or30,
+    getAllClientsAndRepresentative
 }from "./modules/clients.js"
 
 import {
@@ -46,7 +48,14 @@ import {
 //console.log(await getAllPaypalPayments2008())
 //console.log(await getAllPaymentTypes());
 //console.log(await getAllProductosGamaOrnamentals());
-console.log(await getAllClientsFromSpainAndRepresentative11Or30());
+//console.log(await getAllClientsFromSpainAndRepresentative11Or30());
+
+// -------------------------- CONSULTAS MULTITABLA -------------------------------
+
+console.log(await getAllClientsAndRepresentative())
 
 
 
+// -------------------------- MODULOS -------------------------------
+
+//console.log(await getAllRepresentatives())

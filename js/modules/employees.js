@@ -65,3 +65,23 @@ export const getEmployByCode = async()=>{
     let dataClients = await res.json()
     return dataClients
 }
+
+
+// ------------------ MODULOS --------------------
+
+export const getAllRepresentatives = async()=>{
+
+    let res = await fetch("http://localhost:5502/employees?position=Representante%20Ventas")
+    let data = await res.json()
+    let dataUpdate = []
+
+    data.forEach(representative =>{
+        dataUpdate.push({
+            codigo: representative.employee_code,
+            nombre: representative.name,
+            apellidos: `${representative.lastname1} ${representative.lastname2}`,
+        })
+    })
+
+    return dataUpdate
+}
