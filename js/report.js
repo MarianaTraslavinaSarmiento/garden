@@ -2,7 +2,8 @@ import "./components/clock.js";
 import {getAllCodeAndCityOffices,
     getAllOfficesFromSpainCityAndMovil} from "./modules/offices.js"
 
-import {getAllEmployeesWithBossAndCodeSeven} from "./modules/employees.js"
+import {getAllEmployeesWithBossAndCodeSeven,
+    getAllInformationBoss} from "./modules/employees.js"
 
 const queryAboutTable1 = document.querySelector("#queryAboutTable1");
 queryAboutTable1.addEventListener("click", async(e)=>{
@@ -74,7 +75,7 @@ queryAboutTable3.addEventListener("click", async(e)=>{
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Nombre: </b> ${val.nombre}</p>
-                        <p><b>Apellido: </b> ${val.apellidos}</p>
+                        <p><b>Apellidos: </b> ${val.apellidos}</p>
                     </div>
                 </div>
             </div>
@@ -85,5 +86,33 @@ queryAboutTable3.addEventListener("click", async(e)=>{
 })
 
 
+// EJERCICIO 4
+
+const queryAboutTable4 = document.querySelector("#queryAboutTable4");
+queryAboutTable4.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable4.children
+    if(!report__container.innerHTML){
+        let data = await getAllInformationBoss();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>${val.puesto}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre}</p>
+                        <p><b>Apellidos: </b> ${val.apellidos}</p>
+                        <p><b>Email: </b> ${val.email}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
 
 
