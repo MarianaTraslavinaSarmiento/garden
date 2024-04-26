@@ -205,7 +205,7 @@ export const getAllClientsThatNotMadePaymentsAndOfficeRepresentative = async()=>
 
 
 
-// ------------------- MODULOS----------------------------------
+// ------------------------------ MODULOS----------------------------------
 
 export const getAllClients = async() =>{
     let res = await fetch("http://localhost:5501/clients")
