@@ -44,7 +44,8 @@ import {
 // -------------------------- CONSULTAS -------------------------------
 
 // console.log(await getAllCodeAndCityOffices())  
-console.log(await getAllOfficesFromSpainCityAndMovil());
+// console.log(await getAllOfficesFromSpainCityAndMovil());
+console.log(await getAllEmployeesWithBossAndCodeSeven())
 // console.log(await getAllCodeAndCityOffices())
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
 
