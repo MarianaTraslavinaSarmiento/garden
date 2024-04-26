@@ -13,7 +13,10 @@ export const getAllClientsFromSpain = async()=>{
         //Sacar la propiedad client_name como una variable, ya el nombre del cliente es un string entonces va a imprimir son strings
         let {client_name} = client
         dataUpdate.add(client_name)
+
     })
+
+    dataUpdate = Array.from(dataUpdate)
 
     return dataUpdate
 }

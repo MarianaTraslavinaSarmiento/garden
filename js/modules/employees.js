@@ -53,7 +53,7 @@ export const getAllNotSalesRepresentative = async()=>{
             puesto: employee.position        
         })
     })
-   //return dataUpdate
+   return dataUpdate
 }
 
 

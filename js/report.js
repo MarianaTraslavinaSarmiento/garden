@@ -1,9 +1,14 @@
 import "./components/clock.js";
 import {getAllCodeAndCityOffices,
-    getAllOfficesFromSpainCityAndMovil} from "./modules/offices.js"
+    getAllOfficesFromSpainCityAndMovil
+ } from "./modules/offices.js"
 
 import {getAllEmployeesWithBossAndCodeSeven,
-    getAllInformationBoss} from "./modules/employees.js"
+    getAllInformationBoss,
+    getAllNotSalesRepresentative} from "./modules/employees.js"
+
+
+import {getAllClientsFromSpain} from "./modules/clients.js"
 
 const queryAboutTable1 = document.querySelector("#queryAboutTable1");
 queryAboutTable1.addEventListener("click", async(e)=>{
@@ -115,4 +120,55 @@ queryAboutTable4.addEventListener("click", async(e)=>{
     }
 })
 
+// EJERCICIO 5
 
+const queryAboutTable5 = document.querySelector("#queryAboutTable5");
+queryAboutTable5.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable5.children
+    if(!report__container.innerHTML){
+        let data = await getAllNotSalesRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>${val.puesto}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre}</p>
+                        <p><b>Apellidos: </b> ${val.apellidos}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 6
+
+const queryAboutTable6 = document.querySelector("#queryAboutTable6");
+queryAboutTable6.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable6.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsFromSpain();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})

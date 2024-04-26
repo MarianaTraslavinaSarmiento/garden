@@ -46,7 +46,9 @@ import {
 // console.log(await getAllCodeAndCityOffices())  
 // console.log(await getAllOfficesFromSpainCityAndMovil());
 //console.log(await getAllEmployeesWithBossAndCodeSeven())
-console.log(await getAllInformationBoss())
+// console.log(await getAllInformationBoss())
+// console.log(await getAllNotSalesRepresentative())
+console.log(await getAllClientsFromSpain())
 // console.log(await getAllCodeAndCityOffices())
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
 
