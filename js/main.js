@@ -40,7 +40,11 @@ import {
     getAllProductosGamaOrnamentals
 }from "./modules/products.js"
 
-// console.log(await getAllOfficesFromSpainCityAndMovil());
+
+// -------------------------- CONSULTAS -------------------------------
+
+// console.log(await getAllCodeAndCityOffices())  
+console.log(await getAllOfficesFromSpainCityAndMovil());
 // console.log(await getAllCodeAndCityOffices())
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
 
@@ -61,7 +65,7 @@ import {
 //console.log(await getAllClientsMadePaymentsAndNameRepresentative()) //2
 // console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
 //console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
-console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
+// console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
 
 
 // -------------------------- MODULOS -------------------------------
