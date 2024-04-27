@@ -12,7 +12,10 @@ import {getAllEmployeesWithBossAndCodeSeven,
 
 import {getAllClientsFromSpain} from "./modules/clients.js"
 
-import {statusRequests} from "./modules/requests.js";
+import {statusRequests,
+    getAllRequestsDeliveredLate,
+    getAllRequestsDelivered2DaysAgo,
+    getAllRequestsRejectedIn2009} from "./modules/requests.js";
 
 
 import {getAllClientsMadePayment2008} from "./modules/payments.js"
@@ -29,6 +32,7 @@ const queryAboutTable5 = document.querySelector("#queryAboutTable5");
 const queryAboutTable6 = document.querySelector("#queryAboutTable6");
 const queryAboutTable7 = document.querySelector("#queryAboutTable7");
 const queryAboutTable8 = document.querySelector("#queryAboutTable8");
+const queryAboutTable9 = document.querySelector("#queryAboutTable9");
 
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
@@ -52,8 +56,6 @@ queryAboutTable1.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 2
-
-
 queryAboutTable2.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable2.children
     if(!report__container.innerHTML){
@@ -79,7 +81,6 @@ queryAboutTable2.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 3
-
 queryAboutTable3.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable3.children
     if(!report__container.innerHTML){
@@ -222,6 +223,94 @@ queryAboutTable8.addEventListener("click", async(e)=>{
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Codigo cliente: </b> ${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 9
+queryAboutTable9.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable9.children
+    if(!report__container.innerHTML){
+        let data = await getAllRequestsDeliveredLate();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Código del pedido: </b>${val.codigo_pedido}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Código del pedido: </b> ${val.codigo_cliente}</p>
+                        <p><b>Fecha esperada: </b> ${val.fecha_esperada}</p>
+                        <p><b>Fecha entrega: </b> ${val.fecha_entrega}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 10
+queryAboutTable10.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable10.children
+    if(!report__container.innerHTML){
+        let data = await getAllRequestsDelivered2DaysAgo();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Código del pedido: </b>${val.codigo_pedido}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Código del cliente: </b> ${val.codigo_cliente}</p>
+                        <p><b>Fecha esperada: </b> ${val.fecha_esperada}</p>
+                        <p><b>Fecha entrega: </b> ${val.fecha_entrega}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 11
+
+queryAboutTable11.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable11.children
+    if(!report__container.innerHTML){
+        let data = await getAllRequestsRejectedIn2009();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Código del pedido: </b>${val.code_request}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Fecha del pedido: </b> ${val.date_request}</p>
+                        <p><b>Fecha esperada: </b> ${val.date_wait}</p>
+                        <p><b>Fecha entrega: </b> ${val.date_delivery}</p>
+                        <p><b>Estado: </b> ${val.status}</p>
+                        <p><b>Comentario: </b> ${val.comment}</p>
+                        <p><b>Código del cliente: </b> ${val.code_client}</p>
+                        <p><b>ID del cliente: </b> ${val.id}</p>
                     </div>
                 </div>
             </div>
