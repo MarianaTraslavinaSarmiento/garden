@@ -57,29 +57,17 @@ import {
 // console.log(await getAllPaypalPayments2008())
 // console.log(await getAllPaymentTypes());
 // console.log(await getAllProductosGamaOrnamentals())
-console.log(await getAllClientsFromSpainAndRepresentative11Or30());
+// console.log(await getAllClientsFromSpainAndRepresentative11Or30());
 // console.log(await getAllRequestsRejectedIn2009());
-// console.log(await getAllCodeAndCityOffices())
-// console.log(await getAllEmployeesWithBossAndCodeSeven());
-// console.log(await getAllClientsFromSpain())
-// console.log(await statusRequests())
-// console.log(await getAllRequestsDeliveredLate())
-// console.log(await getAllRequestsDelivered2DaysAgo())
 
-//console.log(await getAllRequestOfJanuary())
-//console.log(await getAllPaypalPayments2008())
-//console.log(await getAllPaymentTypes());
-//console.log(await getAllProductosGamaOrnamentals());
-//console.log(await getAllClientsFromSpainAndRepresentative11Or30());
 
 // -------------------------- CONSULTAS MULTITABLA -------------------------------
 
-//console.log(await getAllClientsAndRepresentative())  //1
+console.log(await getAllClientsAndRepresentative())  //1
 //console.log(await getAllClientsMadePaymentsAndNameRepresentative()) //2
-// console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
+//console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
 //console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
-// console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
-
+//console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
 
 // -------------------------- MODULOS -------------------------------
 

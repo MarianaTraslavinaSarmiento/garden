@@ -170,7 +170,7 @@ details {
     border-radius: 5px;
 }
 .report__container{
-    height: 220px;
+    height: 300px;
     overflow-y: scroll;
     margin-top: 10px;
 }

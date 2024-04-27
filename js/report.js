@@ -11,7 +11,8 @@ import {getAllEmployeesWithBossAndCodeSeven,
 
 
 import {getAllClientsFromSpain,
-    getAllClientsFromSpainAndRepresentative11Or30} from "./modules/clients.js"
+    getAllClientsFromSpainAndRepresentative11Or30,
+    getAllClientsAndRepresentative} from "./modules/clients.js"
 
 import {statusRequests,
     getAllRequestsDeliveredLate,
@@ -47,6 +48,12 @@ const queryAboutTable14 = document.querySelector("#queryAboutTable14");
 const queryAboutTable15 = document.querySelector("#queryAboutTable15");
 const queryAboutTable16 = document.querySelector("#queryAboutTable16");
 
+const queryMultitable1 = document.querySelector("#queryMultitable1")
+const queryMultitable2 = document.querySelector("#queryMultitable2")
+const queryMultitable3 = document.querySelector("#queryMultitable3")
+const queryMultitable4 = document.querySelector("#queryMultitable4")
+const queryMultitable5 = document.querySelector("#queryMultitable5")
+
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
     if(!report__container.innerHTML){
@@ -59,6 +66,7 @@ queryAboutTable1.addEventListener("click", async(e)=>{
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Codigo: </b>${val.codigo}</p>
+                        <p><b>Ciudad: </b>${val.ciudad}</p>
                     </div>
                 </div>
             </div>
@@ -119,9 +127,7 @@ queryAboutTable3.addEventListener("click", async(e)=>{
     }
 })
 
-
 // EJERCICIO 4
-
 queryAboutTable4.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable4.children
     if(!report__container.innerHTML){
@@ -149,7 +155,6 @@ queryAboutTable4.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 5
-
 queryAboutTable5.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable5.children
     if(!report__container.innerHTML){
@@ -177,7 +182,6 @@ queryAboutTable5.addEventListener("click", async(e)=>{
 
 
 // EJERCICIO 6
-
 queryAboutTable6.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable6.children
     if(!report__container.innerHTML){
@@ -200,7 +204,6 @@ queryAboutTable6.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 7
-
 queryAboutTable7.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable7.children
     if(!report__container.innerHTML){
@@ -223,7 +226,6 @@ queryAboutTable7.addEventListener("click", async(e)=>{
 })
 
 //EJERCICIO 8
-
 queryAboutTable8.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable8.children
     if(!report__container.innerHTML){
@@ -302,7 +304,6 @@ queryAboutTable10.addEventListener("click", async(e)=>{
 
 
 // EJERCICIO 11
-
 queryAboutTable11.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable11.children
     if(!report__container.innerHTML){
@@ -334,7 +335,6 @@ queryAboutTable11.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 12
-
 queryAboutTable12.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable12.children
     if(!report__container.innerHTML){
@@ -366,7 +366,6 @@ queryAboutTable12.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 13
-
 queryAboutTable13.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable13.children
     if(!report__container.innerHTML){
@@ -397,7 +396,6 @@ queryAboutTable13.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 14
-
 queryAboutTable14.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable14.children
     if(!report__container.innerHTML){
@@ -420,9 +418,7 @@ queryAboutTable14.addEventListener("click", async(e)=>{
     }
 })
 
-
 // EJERCICIO 15
-
 queryAboutTable15.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable15.children
     if(!report__container.innerHTML){
@@ -455,9 +451,7 @@ queryAboutTable15.addEventListener("click", async(e)=>{
     }
 })
 
-
 // EJERCICIO 16
-
 queryAboutTable16.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable16.children
     if(!report__container.innerHTML){
@@ -485,6 +479,35 @@ queryAboutTable16.addEventListener("click", async(e)=>{
                         <p><b>Código del representante: </b> ${val.code_employee_sales_manager}</p>
                         <p><b>Límite de crédito: </b> ${val.limit_credit}</p>
                         <p><b>ID: </b> ${val.id}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// CONSULTAS MULTITABLA
+
+// EJERCICIO 1
+queryMultitable1.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable1.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsAndRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Cliente</b>: ${val.nombre_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre_representante}</p>
+                        <p><b>Apellido: </b> ${val.apellidos_representante}</p>
                     </div>
                 </div>
             </div>
