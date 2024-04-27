@@ -134,8 +134,6 @@ export const getAllClientNOTMadePaymentsAndNameRepresentative = async()=>{
 
 //4. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
 
-
-
 export const getAllClientsThatMadePaymentsAndOfficeRepresentative = async()=>{
 
     let datagetClientsPaymentsAndSaleAgentFullInformation = await getClientsPaymentsAndSaleAgentFullInformation()
@@ -234,8 +232,32 @@ export const getAllAdressOfficesThatHaveClientsFuenlabrada = async() =>{
     
 }
 
+//7.Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
 
+export const getAllClientsNameAndWithRepresentativesCityOffice = async() => {
+    let allOffices = await getAllOffices()
+    let allClients = await getAllClients()
+    let allRepresentatives = await getAllRepresentatives()
+    let dataUpdate = []
 
+    for (let client of allClients) {
+        for (let employee of allRepresentatives){
+            if (client.code_employee_sales_manager == employee.codigo) {
+                for (let office of allOffices) {
+
+                    if (employee.codigo_oficina == office.code_office) {
+                        dataUpdate.push({
+                            client_name: client.client_name,
+                            employee_sales_manager: `${employee.nombre} ${employee.apellidos}`,
+                            office_city: office.city
+                        })
+                    }
+                }
+            }
+        }
+    }
+    return dataUpdate
+}
 
 
 

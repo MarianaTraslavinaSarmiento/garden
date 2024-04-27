@@ -7,7 +7,8 @@ import {
     getAllEmployeesWithBossAndCodeSeven,
     getAllInformationBoss,
     getAllNotSalesRepresentative,
-    getAllRepresentatives
+    getAllRepresentatives,
+    getAllEmployeesAndSupervisors
 }from "./modules/employees.js"
 
 import {
@@ -18,7 +19,8 @@ import {
     getAllClientNOTMadePaymentsAndNameRepresentative,
     getAllClientsThatMadePaymentsAndOfficeRepresentative,
     getAllClientsThatNotMadePaymentsAndOfficeRepresentative,
-    getAllAdressOfficesThatHaveClientsFuenlabrada
+    getAllAdressOfficesThatHaveClientsFuenlabrada,
+    getAllClientsNameAndWithRepresentativesCityOffice
 
 }from "./modules/clients.js"
 
@@ -69,7 +71,9 @@ import {
 // console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
 // console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
 // console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
-console.log(await getAllAdressOfficesThatHaveClientsFuenlabrada())
+// console.log(await getAllAdressOfficesThatHaveClientsFuenlabrada())
+// console.log(await getAllClientsNameAndWithRepresentativesCityOffice())
+console.log(await getAllEmployeesAndSupervisors())
 
 // -------------------------- MODULOS -------------------------------
 

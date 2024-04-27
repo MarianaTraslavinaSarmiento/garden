@@ -67,6 +67,29 @@ export const getEmployByCode = async()=>{
 }
 
 
+//------------------- CONSULTAS MULTITABLAS --------------------------
+
+//8. Devuelve un listado con el nombre de los empleados junto con el nombre de sus jefes.
+
+export const getAllEmployeesAndSupervisors = async() => {
+    let res = await fetch ("http://localhost:5502/employees")
+    let allEmployees = await res.json()
+    let dataUpdate = []
+
+    for (let employee of allEmployees) {
+        for (let supervisor of allEmployees) {
+            if (employee.code_boss == supervisor.employee_code) {
+                dataUpdate.push({
+                    nombre_empleado: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                    nombre_jefe: `${supervisor.name} ${supervisor.lastname1} ${supervisor.lastname2}`
+                })
+            }
+        }
+    }
+    return dataUpdate
+}
+
+
 // ------------------ MODULOS --------------------
 
 export const getAllRepresentatives = async()=>{
