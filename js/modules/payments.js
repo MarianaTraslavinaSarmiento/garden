@@ -1,3 +1,21 @@
+//8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+
+export const getAllClientsMadePayment2008 = async()=>{
+    let res = await fetch("http://localhost:5505/payments")
+    let data = await res.json()
+    let dataUpdate = new Set()
+    
+    data.forEach(payment =>{
+        (payment.date_payment.startsWith("2008")) ? dataUpdate.add(
+            payment.code_client
+        ) : undefined
+    })
+
+    let arrayConvertido = Array.from(dataUpdate)
+    return arrayConvertido
+
+}
+
 
 //13. Devuelve un listado con todos los pagos que se realizaron en el año 2008 mediante Paypal. Ordene el resultado de mayor a menor.
 

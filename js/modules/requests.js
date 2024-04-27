@@ -1,4 +1,9 @@
-import { diffDays } from "@formkit/tempo"
+
+
+async function loadDiffDays() {
+    const {diffDays} = await import("@formkit/tempo");
+    return diffDays;
+}
 
 //7.Devuelve un listado con los distintos estados por los que puede pasar un pedido.
 
@@ -15,24 +20,6 @@ export const statusRequests = async()=>{
     let objetoConvertido = Array.from(dataUpdate)
     return objetoConvertido
     
-}
-
-//8. Devuelve un listado con el código de cliente de aquellos clientes que realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
-
-export const getAllClientsMadePayment2008 = async()=>{
-    let res = await fetch("http://localhost:5508/requests?")
-    let data = await res.json()
-    let dataUpdate = new Set()
-    
-    data.forEach(request =>{
-        (request.date_request.startsWith("2008")) ? dataUpdate.add({
-            codigo_cliente: request.code_client
-        }) : undefined
-    })
-
-    let arrayConvertido = Array.from(dataUpdate)
-    return arrayConvertido
-
 }
 
 
@@ -72,11 +59,13 @@ export const getAllRequestsDeliveredLate = async()=>{
 export const getAllRequestsDelivered2DaysAgo = async()=>{
     let res = await fetch ("http://localhost:5508/requests")
     let data = await res.json()
+    const diffDays = await loadDiffDays()
     let dataUpdate = []
 
     data.forEach(request => {
 
         if (request.date_delivery != null){
+            
             let diferencia = diffDays(request.date_wait, request.date_delivery)
             if(diferencia >= 2) dataUpdate.push({
     

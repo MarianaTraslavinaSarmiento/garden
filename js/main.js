@@ -23,7 +23,6 @@ import {
 
 import {
     statusRequests,
-    getAllClientsMadePayment2008,
     getAllRequestsDeliveredLate,
     getAllRequestsDelivered2DaysAgo,
     getAllRequestsRejectedIn2009,
@@ -32,6 +31,7 @@ import {
 }from "./modules/requests.js"
 
 import {
+    getAllClientsMadePayment2008,
     getAllPaypalPayments2008,
     getAllPaymentTypes
 }from "./modules/payments.js"
@@ -48,14 +48,15 @@ import {
 //console.log(await getAllEmployeesWithBossAndCodeSeven())
 // console.log(await getAllInformationBoss())
 // console.log(await getAllNotSalesRepresentative())
-console.log(await getAllClientsFromSpain())
+// console.log(await getAllClientsFromSpain())
+// console.log(await statusRequests())
+// console.log(await getAllClientsMadePayment2008())
 // console.log(await getAllCodeAndCityOffices())
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
-
 // console.log(await getAllClientsFromSpain())
 // console.log(await statusRequests())
 // console.log(await getAllRequestsDeliveredLate())
-//console.log(await getAllRequestsDelivered2DaysAgo())
+console.log(await getAllRequestsDelivered2DaysAgo())
 //console.log(await getAllRequestsRejectedIn2009());
 //console.log(await getAllRequestOfJanuary())
 //console.log(await getAllPaypalPayments2008())

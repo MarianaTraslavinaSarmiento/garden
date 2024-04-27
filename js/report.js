@@ -1,3 +1,5 @@
+
+
 import "./components/clock.js";
 import {getAllCodeAndCityOffices,
     getAllOfficesFromSpainCityAndMovil
@@ -10,7 +12,24 @@ import {getAllEmployeesWithBossAndCodeSeven,
 
 import {getAllClientsFromSpain} from "./modules/clients.js"
 
+import {statusRequests} from "./modules/requests.js";
+
+
+import {getAllClientsMadePayment2008} from "./modules/payments.js"
+
+
+
+// Constantes declaradas
+
 const queryAboutTable1 = document.querySelector("#queryAboutTable1");
+const queryAboutTable2 = document.querySelector("#queryAboutTable2");
+const queryAboutTable3 = document.querySelector("#queryAboutTable3");
+const queryAboutTable4 = document.querySelector("#queryAboutTable4");
+const queryAboutTable5 = document.querySelector("#queryAboutTable5");
+const queryAboutTable6 = document.querySelector("#queryAboutTable6");
+const queryAboutTable7 = document.querySelector("#queryAboutTable7");
+const queryAboutTable8 = document.querySelector("#queryAboutTable8");
+
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
     if(!report__container.innerHTML){
@@ -20,9 +39,6 @@ queryAboutTable1.addEventListener("click", async(e)=>{
         data.forEach(val => {
             plantilla += `
                 <div class="report__card">
-                <div class="card__title">
-                    <div>${val.ciudad}</div>
-                </div>
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Codigo: </b>${val.codigo}</p>
@@ -37,7 +53,7 @@ queryAboutTable1.addEventListener("click", async(e)=>{
 
 // EJERCICIO 2
 
-const queryAboutTable2 = document.querySelector("#queryAboutTable2");
+
 queryAboutTable2.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable2.children
     if(!report__container.innerHTML){
@@ -64,7 +80,6 @@ queryAboutTable2.addEventListener("click", async(e)=>{
 
 // EJERCICIO 3
 
-const queryAboutTable3 = document.querySelector("#queryAboutTable3");
 queryAboutTable3.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable3.children
     if(!report__container.innerHTML){
@@ -93,7 +108,6 @@ queryAboutTable3.addEventListener("click", async(e)=>{
 
 // EJERCICIO 4
 
-const queryAboutTable4 = document.querySelector("#queryAboutTable4");
 queryAboutTable4.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable4.children
     if(!report__container.innerHTML){
@@ -122,7 +136,6 @@ queryAboutTable4.addEventListener("click", async(e)=>{
 
 // EJERCICIO 5
 
-const queryAboutTable5 = document.querySelector("#queryAboutTable5");
 queryAboutTable5.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable5.children
     if(!report__container.innerHTML){
@@ -151,7 +164,6 @@ queryAboutTable5.addEventListener("click", async(e)=>{
 
 // EJERCICIO 6
 
-const queryAboutTable6 = document.querySelector("#queryAboutTable6");
 queryAboutTable6.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable6.children
     if(!report__container.innerHTML){
@@ -164,6 +176,52 @@ queryAboutTable6.addEventListener("click", async(e)=>{
                 <div class="card__body">
                     <div class="body__marck">
                         <p><b>Nombre: </b> ${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 7
+
+queryAboutTable7.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable7.children
+    if(!report__container.innerHTML){
+        let data = await statusRequests();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Estado: </b>${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//EJERCICIO 8
+
+queryAboutTable8.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable8.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsMadePayment2008();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo cliente: </b> ${val}</p>
                     </div>
                 </div>
             </div>
