@@ -12,7 +12,9 @@ import {getAllEmployeesWithBossAndCodeSeven,
 
 import {getAllClientsFromSpain,
     getAllClientsFromSpainAndRepresentative11Or30,
-    getAllClientsAndRepresentative} from "./modules/clients.js"
+    getAllClientsAndRepresentative,
+    getAllClientsMadePaymentsAndNameRepresentative} from "./modules/clients.js"
+    
 
 import {statusRequests,
     getAllRequestsDeliveredLate,
@@ -503,6 +505,32 @@ queryMultitable1.addEventListener("click", async(e)=>{
                 <div class="report__card">
                 <div class="card__title">
                     <div><b>Cliente</b>: ${val.nombre_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre_representante}</p>
+                        <p><b>Apellido: </b> ${val.apellidos_representante}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+//EJERCICIO 2
+queryMultitable2.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable2.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsMadePaymentsAndNameRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Cliente:</b> ${val.nombre_cliente}</div>
                 </div>
                 <div class="card__body">
                     <div class="body__marck">
