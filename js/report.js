@@ -10,7 +10,8 @@ import {getAllEmployeesWithBossAndCodeSeven,
     getAllNotSalesRepresentative} from "./modules/employees.js"
 
 
-import {getAllClientsFromSpain} from "./modules/clients.js"
+import {getAllClientsFromSpain,
+    getAllClientsFromSpainAndRepresentative11Or30} from "./modules/clients.js"
 
 import {statusRequests,
     getAllRequestsDeliveredLate,
@@ -44,6 +45,7 @@ const queryAboutTable12 = document.querySelector("#queryAboutTable12");
 const queryAboutTable13 = document.querySelector("#queryAboutTable13");
 const queryAboutTable14 = document.querySelector("#queryAboutTable14");
 const queryAboutTable15 = document.querySelector("#queryAboutTable15");
+const queryAboutTable16 = document.querySelector("#queryAboutTable16");
 
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
@@ -351,7 +353,7 @@ queryAboutTable12.addEventListener("click", async(e)=>{
                         <p><b>Fecha esperada: </b> ${val.date_wait}</p>
                         <p><b>Fecha entrega: </b> ${val.date_delivery}</p>
                         <p><b>Estado: </b> ${val.status}</p>
-                        <p><b>Comentario: </b> ${val.comment}</p>
+                        <p><b>Comentario: </b> ${val.comment  || "No aplica"}</p>
                         <p><b>Código del cliente: </b> ${val.code_client}</p>
                         <p><b>ID del cliente: </b> ${val.id}</p>
                     </div>
@@ -435,14 +437,53 @@ queryAboutTable15.addEventListener("click", async(e)=>{
                 </div>
                 <div class="card__body">
                     <div class="body__marck">
-                        <p><b>Codigo del producto </b> ${val.code_product}</p>
+                        <p><b>Codigo del producto: </b> ${val.code_product}</p>
                         <p><b>Gama: </b> ${val.gama}</p>
                         <p><b>Medida: </b> ${val.dimension}</p>
                         <p><b>Proveedor: </b> ${val.provider}</p>
-                        <p><b>Descripción: </b> ${val.description}</p>
+                        <p><b>Descripción: </b> ${val.description  || "No registrado"}</p>
                         <p><b>Cantidad: </b> ${val.stock}</p>
                         <p><b>Precio de venta: </b> ${val.price_sale}</p>
                         <p><b>Precio de proveedor: </b> ${val.price_provider}</p>
+                        <p><b>ID: </b> ${val.id}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 16
+
+queryAboutTable16.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable16.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsFromSpainAndRepresentative11Or30();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>${val.client_name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo del cliente: </b> ${val.client_code}</p>
+                        <p><b>Nombre de contacto: </b> ${val.contact_name}</p>
+                        <p><b>Apellido de contacto: </b> ${val.contact_lastname}</p>
+                        <p><b>Teléfono: </b> ${val.phone}</p>
+                        <p><b>Dirección 1: </b> ${val.address1}</p>
+                        <p><b>Dirección 2: </b> ${val.address2  || "No registrado"} </p>
+                        <p><b>Ciudad: </b> ${val.city}</p>
+                        <p><b>Región: </b> ${val.region}</p>
+                        <p><b>País: </b> ${val.country}</p>
+                        <p><b>Código postal: </b> ${val.postal_code}</p>
+                        <p><b>Código del representante: </b> ${val.code_employee_sales_manager}</p>
+                        <p><b>Límite de crédito: </b> ${val.limit_credit}</p>
                         <p><b>ID: </b> ${val.id}</p>
                     </div>
                 </div>

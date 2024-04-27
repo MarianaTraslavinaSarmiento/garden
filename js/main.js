@@ -56,7 +56,8 @@ import {
 // console.log(await getAllRequestOfJanuary())
 // console.log(await getAllPaypalPayments2008())
 // console.log(await getAllPaymentTypes());
-console.log(await getAllProductosGamaOrnamentals())
+// console.log(await getAllProductosGamaOrnamentals())
+console.log(await getAllClientsFromSpainAndRepresentative11Or30());
 // console.log(await getAllRequestsRejectedIn2009());
 // console.log(await getAllCodeAndCityOffices())
 // console.log(await getAllEmployeesWithBossAndCodeSeven());
