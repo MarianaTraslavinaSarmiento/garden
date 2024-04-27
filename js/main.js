@@ -42,10 +42,13 @@ import {
 }from "./modules/payments.js"
 
 import {
-    getAllProductosGamaOrnamentals
+    getAllProductosGamaOrnamentals,
+    
 }from "./modules/products.js"
 
-
+import {
+    getAllDifferentProductGamasOfClient
+}from "./modules/request_details.js"
 // -------------------------- CONSULTAS -------------------------------
 
 // console.log(await getAllCodeAndCityOffices())  
@@ -77,7 +80,8 @@ import {
 // console.log(await getAllClientsNameAndWithRepresentativesCityOffice())
 // console.log(await getAllEmployeesAndSupervisors())
 // console.log(await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors())
-console.log(await getAllClientsNotDeliveredOnTime())
+// console.log(await getAllClientsNotDeliveredOnTime())
+console.log(await getAllDifferentProductGamasOfClient())
 
 // -------------------------- MODULOS -------------------------------
 

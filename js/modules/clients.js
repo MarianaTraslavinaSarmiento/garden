@@ -291,7 +291,6 @@ export const getAllClientsNotDeliveredOnTime = async() => {
 
 
 
-
 // ------------------------------ MODULOS----------------------------------
 
 export const getAllClients = async() =>{
