@@ -64,10 +64,10 @@ import {
 // -------------------------- CONSULTAS MULTITABLA -------------------------------
 
 // console.log(await getAllClientsAndRepresentative())  //1
-console.log(await getAllClientsMadePaymentsAndNameRepresentative()) //2
-//console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
-//console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
-//console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
+// console.log(await getAllClientsMadePaymentsAndNameRepresentative()) //2
+// console.log(await getAllClientNOTMadePaymentsAndNameRepresentative()) //3
+// console.log(await getAllClientsThatMadePaymentsAndOfficeRepresentative()) // 4
+console.log(await getAllClientsThatNotMadePaymentsAndOfficeRepresentative())
 
 // -------------------------- MODULOS -------------------------------
 

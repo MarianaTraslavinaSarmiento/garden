@@ -13,7 +13,10 @@ import {getAllEmployeesWithBossAndCodeSeven,
 import {getAllClientsFromSpain,
     getAllClientsFromSpainAndRepresentative11Or30,
     getAllClientsAndRepresentative,
-    getAllClientsMadePaymentsAndNameRepresentative} from "./modules/clients.js"
+    getAllClientsMadePaymentsAndNameRepresentative,
+    getAllClientNOTMadePaymentsAndNameRepresentative,
+    getAllClientsThatMadePaymentsAndOfficeRepresentative,
+    getAllClientsThatNotMadePaymentsAndOfficeRepresentative} from "./modules/clients.js"
     
 
 import {statusRequests,
@@ -544,3 +547,86 @@ queryMultitable2.addEventListener("click", async(e)=>{
         report__container.innerHTML = plantilla;
     }
 })
+
+// EJERCICIO 3
+
+queryMultitable3.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable3.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientNOTMadePaymentsAndNameRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Cliente:</b> ${val.nombre_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre_representante}</p>
+                        <p><b>Apellido: </b> ${val.apellidos_representante}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+// EJERCICIO 4
+
+queryMultitable4.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable4.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsThatMadePaymentsAndOfficeRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Cliente:</b> ${val.nombre_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre_representante}</p>
+                        <p><b>Apellido: </b> ${val.apellidos_representante}</p>
+                        <p><b>Ciudad oficina: </b> ${val.ciudad_oficina}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 5
+
+queryMultitable5.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable5.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsThatNotMadePaymentsAndOfficeRepresentative();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Cliente:</b> ${val.nombre_cliente}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre_representante}</p>
+                        <p><b>Apellido: </b> ${val.apellidos_representante}</p>
+                        <p><b>Ciudad oficina: </b> ${val.ciudad_oficina}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+

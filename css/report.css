@@ -111,7 +111,6 @@ body {
     /* background: violet; */
     margin-top: var(--layout-box-y);
     height: 290px;
-    overflow-y: scroll;
 }
 .report__details details{
     margin-left: var(--layout-box-x);
