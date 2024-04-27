@@ -3,6 +3,7 @@ import {getAllPayments} from "./payments.js"
 import {getAllOffices} from "./offices.js"
 
 
+
 //6. Devuelve un listado con el nombre de los todos los clientes españoles.
 
 export const getAllClientsFromSpain = async()=>{
@@ -201,6 +202,42 @@ export const getAllClientsThatNotMadePaymentsAndOfficeRepresentative = async()=>
 }
 
 
+//6. Lista la dirección de las oficinas que tengan clientes en `Fuenlabrada`.
+
+export const getAllAdressOfficesThatHaveClientsFuenlabrada = async() =>{
+
+    let res = await fetch("http://localhost:5504/offices")
+    let allOffices = await res.json()
+    let allRepresentatives = await getAllRepresentatives()
+    let dataUpdate = new Set()
+    let allClients = await getAllClients()
+
+    for (let office of allOffices) {
+        for (let employee of allRepresentatives) {
+            if (employee.codigo_oficina== office.code_office) {
+                for (let client of allClients) {
+                    if (client.code_employee_sales_manager == employee.codigo) {
+                        if (client.city == "Fuenlabrada") {
+                            dataUpdate.add(JSON.stringify({
+                                code_office: office.code_office,
+                                address: office.address1,
+                                address2: (office.address2 || "No registrado")
+                            }))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    dataUpdate = Array.from(dataUpdate).map(resultado => JSON.parse(resultado))
+    return dataUpdate
+    
+}
+
+
+
+
+
 
 
 
@@ -216,6 +253,8 @@ export const getAllClients = async() =>{
     return data
 
 }
+
+
 
 export const getClientsPaymentsAndSaleAgentFullInformation = async() => {
     let res = await fetch("http://localhost:5505/payments")
