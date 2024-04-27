@@ -15,11 +15,16 @@ import {getAllClientsFromSpain} from "./modules/clients.js"
 import {statusRequests,
     getAllRequestsDeliveredLate,
     getAllRequestsDelivered2DaysAgo,
-    getAllRequestsRejectedIn2009} from "./modules/requests.js";
+    getAllRequestsRejectedIn2009,
+    getAllRequestOfJanuary,} from "./modules/requests.js";
 
 
-import {getAllClientsMadePayment2008} from "./modules/payments.js"
+import {getAllClientsMadePayment2008,
+    getAllPaypalPayments2008,
+    getAllPaymentTypes
+} from "./modules/payments.js"
 
+import{getAllProductosGamaOrnamentals} from "./modules/products.js"
 
 
 // Constantes declaradas
@@ -33,6 +38,12 @@ const queryAboutTable6 = document.querySelector("#queryAboutTable6");
 const queryAboutTable7 = document.querySelector("#queryAboutTable7");
 const queryAboutTable8 = document.querySelector("#queryAboutTable8");
 const queryAboutTable9 = document.querySelector("#queryAboutTable9");
+const queryAboutTable10 = document.querySelector("#queryAboutTable10");
+const queryAboutTable11 = document.querySelector("#queryAboutTable11");
+const queryAboutTable12 = document.querySelector("#queryAboutTable12");
+const queryAboutTable13 = document.querySelector("#queryAboutTable13");
+const queryAboutTable14 = document.querySelector("#queryAboutTable14");
+const queryAboutTable15 = document.querySelector("#queryAboutTable15");
 
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
@@ -311,6 +322,128 @@ queryAboutTable11.addEventListener("click", async(e)=>{
                         <p><b>Comentario: </b> ${val.comment}</p>
                         <p><b>Código del cliente: </b> ${val.code_client}</p>
                         <p><b>ID del cliente: </b> ${val.id}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 12
+
+queryAboutTable12.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable12.children
+    if(!report__container.innerHTML){
+        let data = await getAllRequestOfJanuary();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Código del pedido: </b>${val.code_request}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Fecha del pedido: </b> ${val.date_request}</p>
+                        <p><b>Fecha esperada: </b> ${val.date_wait}</p>
+                        <p><b>Fecha entrega: </b> ${val.date_delivery}</p>
+                        <p><b>Estado: </b> ${val.status}</p>
+                        <p><b>Comentario: </b> ${val.comment}</p>
+                        <p><b>Código del cliente: </b> ${val.code_client}</p>
+                        <p><b>ID del cliente: </b> ${val.id}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 13
+
+queryAboutTable13.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable13.children
+    if(!report__container.innerHTML){
+        let data = await getAllPaypalPayments2008();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>ID del pago: </b>${val.id}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Pago realizado por: </b> ${val.payment}</p>
+                        <p><b>ID transacción: </b> ${val.id_transaction}</p>
+                        <p><b>Fecha del pago: </b> ${val.date_payment}</p>
+                        <p><b>Total: </b> ${val.total}</p>
+                        <p><b>Comentario: </b> ${val.comment}</p>
+                        <p><b>Código del cliente: </b> ${val.code_client}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 14
+
+queryAboutTable14.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable14.children
+    if(!report__container.innerHTML){
+        let data = await getAllPaymentTypes();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p>${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 15
+
+queryAboutTable15.addEventListener("click", async(e)=>{
+    let [,report__container] = queryAboutTable15.children
+    if(!report__container.innerHTML){
+        let data = await getAllProductosGamaOrnamentals();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>${val.name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Codigo del producto </b> ${val.code_product}</p>
+                        <p><b>Gama: </b> ${val.gama}</p>
+                        <p><b>Medida: </b> ${val.dimension}</p>
+                        <p><b>Proveedor: </b> ${val.provider}</p>
+                        <p><b>Descripción: </b> ${val.description}</p>
+                        <p><b>Cantidad: </b> ${val.stock}</p>
+                        <p><b>Precio de venta: </b> ${val.price_sale}</p>
+                        <p><b>Precio de proveedor: </b> ${val.price_provider}</p>
+                        <p><b>ID: </b> ${val.id}</p>
                     </div>
                 </div>
             </div>
