@@ -89,6 +89,30 @@ export const getAllEmployeesAndSupervisors = async() => {
     return dataUpdate
 }
 
+// 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe.
+
+export const getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors = async() => {
+    let res = await fetch ("http://localhost:5502/employees")
+    let allEmployees = await res.json()
+    let dataUpdate = []
+
+    for (let employee of allEmployees) {
+        for (let supervisor of allEmployees) {
+            if (employee.code_boss == supervisor.employee_code) {
+                for (let jefe of allEmployees){
+                    if (supervisor.code_boss == jefe.employee_code){
+                        dataUpdate.push({
+                            nombre_empleado: `${employee.name} ${employee.lastname1} ${employee.lastname2}`,
+                            nombre_jefe: `${supervisor.name} ${supervisor.lastname1} ${supervisor.lastname2}`,
+                            nombre_jefe_jefe: `${jefe.name} ${jefe.lastname1} ${jefe.lastname2}`
+                        })
+                    }
+                }
+            }
+        }
+    }
+    return dataUpdate
+}
 
 // ------------------ MODULOS --------------------
 

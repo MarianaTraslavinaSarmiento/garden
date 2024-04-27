@@ -1,6 +1,7 @@
 import {getAllRepresentatives} from "./employees.js"
 import {getAllPayments} from "./payments.js"
 import {getAllOffices} from "./offices.js"
+import {getAllRequests} from "./requests.js"
 
 
 
@@ -259,9 +260,33 @@ export const getAllClientsNameAndWithRepresentativesCityOffice = async() => {
     return dataUpdate
 }
 
+//10. Devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido.
 
+export const getAllClientsNotDeliveredOnTime = async() => {
+    let allRequests = await getAllRequests()
+    let allClients = await getAllClients()
+    let dataUpdate = new Set()
 
+    for (let request of allRequests) {
 
+        let {date_wait, date_delivery} = request
+        let fechaEsperada = Date.parse(date_wait)
+        let fechaEntrega = Date.parse(date_delivery)
+
+        if (fechaEntrega > fechaEsperada){
+            for (let client of allClients){
+                if (request.code_client == client.client_code) {
+                    dataUpdate.add(JSON.stringify(client.client_name))
+                }
+            }
+        }
+
+    }
+
+    dataUpdate = Array.from(dataUpdate).map(client => JSON.parse(client))
+
+    return dataUpdate
+}
 
 
 
