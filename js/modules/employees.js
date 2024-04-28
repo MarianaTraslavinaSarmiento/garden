@@ -1,3 +1,6 @@
+import {getAllOffices} from "./offices.js"
+
+
 //3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
 
 export const getAllEmployeesWithBossAndCodeSeven = async()=>{
@@ -113,6 +116,46 @@ export const getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors = async() 
     }
     return dataUpdate
 }
+
+
+// ---------------------- CONSULTAS COMPOSICION EXTERNA --------------------
+
+//4. Devuelve un listado que muestre solamente los empleados que no tienen una oficina asociada.
+
+export const getAllEmployeesNotHaveOffice = async() =>{
+
+    let res = await fetch ("http://localhost:5502/employees")
+    let allEmployees = await res.json()
+    let allOffices = await getAllOffices()
+    let dataUpdate = new Set()
+
+    for (let employee of allEmployees){
+        let officeEncontrada = false
+        for (let office of allOffices){
+            if (office.code_office == employee.code_office){
+                officeEncontrada = true
+            }
+        }
+
+        if (!officeEncontrada){
+            dataUpdate.add(JSON.stringify(employee))
+        }
+
+    }
+    dataUpdate = Array.from(dataUpdate).map(element => JSON.parse(element))
+    if (dataUpdate.length == 0){
+
+        return [{
+            error : "Todos los empleados tienen una oficina asignada"
+        }]
+
+    }else{
+        return dataUpdate
+    }
+     
+}
+
+
 
 // ------------------ MODULOS --------------------
 

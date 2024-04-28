@@ -9,7 +9,8 @@ import {
     getAllNotSalesRepresentative,
     getAllRepresentatives,
     getAllEmployeesAndSupervisors,
-    getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors
+    getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors,
+    getAllEmployeesNotHaveOffice
 }from "./modules/employees.js"
 
 import {
@@ -24,7 +25,8 @@ import {
     getAllClientsNameAndWithRepresentativesCityOffice,
     getAllClientsNotDeliveredOnTime,
     getAllClientsThayNOTmadeAnyPayment,
-    getAllClientsThatNOTMadeRequest
+    getAllClientsThatNOTMadeRequest,
+    getAllClientsWithNotPaymentAndRequest
 
 }from "./modules/clients.js"
 
@@ -93,5 +95,7 @@ import {
 
 // ------------------------- CONSULTAS COMPOSICION EXTERNA -------------------------
 // console.log(await getAllClientsThayNOTmadeAnyPayment ());
-console.log(await getAllClientsThatNOTMadeRequest ());
+// console.log(await getAllClientsThatNOTMadeRequest ());
+// console.log(await getAllClientsWithNotPaymentAndRequest());
+console.log(await getAllEmployeesNotHaveOffice() );
 
