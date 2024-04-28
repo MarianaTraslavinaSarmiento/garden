@@ -1,7 +1,7 @@
 
 import{
     getAllCodeAndCityOffices,
-    getAllOfficesFromSpainCityAndMovil,} from "./modules/offices.js"
+    getAllOfficesFromSpainCityAndMovil} from "./modules/offices.js"
 
 import {
     getAllEmployeesWithBossAndCodeSeven,
@@ -110,4 +110,5 @@ import {
 // console.log(await getAllEmployeesWhitoutClientsAndDataOffice());
 // console.log(await getEmployeesThatNotHaveOfficeAndClients());
 // console.log(await getAllProductsNeverAppearedInARequest());
-console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
+// console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
+// console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
