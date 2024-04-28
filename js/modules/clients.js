@@ -5,6 +5,7 @@ import {getAllRequests} from "./requests.js"
 
 
 
+
 //6. Devuelve un listado con el nombre de los todos los clientes españoles.
 
 export const getAllClientsFromSpain = async()=>{
@@ -287,6 +288,37 @@ export const getAllClientsNotDeliveredOnTime = async() => {
 
     return dataUpdate
 }
+
+
+// --------------------- CONSULTAS MULTITABLA - COMPOSICIÓN EXTERNA ---------------------
+
+
+//1.Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago
+
+
+export const getAllClientsThayNOTmadeAnyPayment = async()=>{
+
+    let allClients = await getAllClients()
+    let allPayments = await getAllPayments()
+    let dataUpdate = new Set()
+
+    for (let client of allClients){
+        let paymentEncontrado = false
+        for (let payment of allPayments){
+            if (payment.code_client == client.client_code){
+                paymentEncontrado = true
+            }
+        }
+        if (!paymentEncontrado){
+            dataUpdate.add(JSON.stringify(client))
+        }
+    }
+
+    //Sacar un array y de una vez parsearlo para que se convierta a un objeto de JS
+    return Array.from(dataUpdate).map (element => JSON.parse(element))
+
+}
+
 
 
 

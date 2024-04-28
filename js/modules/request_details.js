@@ -18,16 +18,16 @@ export const getAllDifferentProductGamasOfClient = async() => {
     for (let client of allClients) {
         let resultado = {
             client_name: client.client_name,
-            boughtGamas: new Set()
+            gamas: new Set()
         }
         for (let request of allRequests){
-            if (request.code_client == client.code_client){
+            if (request.code_client == client.client_code) {
                 for (let requestDetail of data){
                     if (request.code_request == requestDetail.code_request){
                         for (let product of allProducts){
-                            if (requestDetail.code_product == product.code_product){
+                            if (requestDetail.product_code == product.code_product){
                                 let {gama} = product 
-                                resultado.boughtGamas.add(gama)
+                                resultado.gamas.add(gama)
                             }
                         }
                     }
@@ -35,8 +35,8 @@ export const getAllDifferentProductGamasOfClient = async() => {
                 
             }
         }
-        resultado.boughtGamas = Array.from(resultado.boughtGamas)
-        if (resultado.boughtGamas.length >= 1) {
+        resultado.gamas = Array.from(resultado.gamas)
+        if (resultado.gamas.length >= 1) {
             dataUpdate.push(resultado)
         }
     }

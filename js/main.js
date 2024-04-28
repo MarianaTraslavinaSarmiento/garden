@@ -22,7 +22,8 @@ import {
     getAllClientsThatNotMadePaymentsAndOfficeRepresentative,
     getAllAdressOfficesThatHaveClientsFuenlabrada,
     getAllClientsNameAndWithRepresentativesCityOffice,
-    getAllClientsNotDeliveredOnTime 
+    getAllClientsNotDeliveredOnTime,
+    getAllClientsThayNOTmadeAnyPayment
 
 }from "./modules/clients.js"
 
@@ -82,6 +83,7 @@ import {
 // console.log(await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors())
 // console.log(await getAllClientsNotDeliveredOnTime())
 console.log(await getAllDifferentProductGamasOfClient())
+// console.log(await getAllClientsThayNOTmadeAnyPayment())
 
 // -------------------------- MODULOS -------------------------------
 
