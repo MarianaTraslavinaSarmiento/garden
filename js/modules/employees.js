@@ -1,4 +1,5 @@
 import {getAllOffices} from "./offices.js"
+import {getAllClients} from "./clients.js"
 
 
 //3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7.
@@ -155,7 +156,28 @@ export const getAllEmployeesNotHaveOffice = async() =>{
      
 }
 
+//5. Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado.
 
+export const getAllEmployeesWithoutClients = async() => {
+
+    let res = await fetch ("http://localhost:5502/employees")
+    let allEmployees = await res.json()    
+    let allClients = await getAllClients()
+    let dataUpdate = new Set()
+
+    for (let employee of allEmployees){
+        let clientEncontrado = false
+        for (let client of allClients){
+            if (client.code_employee_sales_manager == employee.employee_code){
+                clientEncontrado = true
+            }
+        }
+        if (!clientEncontrado){
+            dataUpdate.add(JSON.stringify(employee))
+        }
+    }
+    return Array.from(dataUpdate).map(element => JSON.parse(element))
+}
 
 // ------------------ MODULOS --------------------
 

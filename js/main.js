@@ -10,7 +10,8 @@ import {
     getAllRepresentatives,
     getAllEmployeesAndSupervisors,
     getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors,
-    getAllEmployeesNotHaveOffice
+    getAllEmployeesNotHaveOffice,
+    getAllEmployeesWithoutClients
 }from "./modules/employees.js"
 
 import {
@@ -97,5 +98,6 @@ import {
 // console.log(await getAllClientsThayNOTmadeAnyPayment ());
 // console.log(await getAllClientsThatNOTMadeRequest ());
 // console.log(await getAllClientsWithNotPaymentAndRequest());
-console.log(await getAllEmployeesNotHaveOffice() );
+// console.log(await getAllEmployeesNotHaveOffice() );
+console.log(await getAllEmployeesWithoutClients());
 
