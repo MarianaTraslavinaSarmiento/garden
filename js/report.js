@@ -7,7 +7,9 @@ import {getAllCodeAndCityOffices,
 
 import {getAllEmployeesWithBossAndCodeSeven,
     getAllInformationBoss,
-    getAllNotSalesRepresentative} from "./modules/employees.js"
+    getAllNotSalesRepresentative,
+    getAllEmployeesAndSupervisors,
+    getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors} from "./modules/employees.js"
 
 
 import {getAllClientsFromSpain,
@@ -17,7 +19,10 @@ import {getAllClientsFromSpain,
     getAllClientNOTMadePaymentsAndNameRepresentative,
     getAllClientsThatMadePaymentsAndOfficeRepresentative,
     getAllClientsThatNotMadePaymentsAndOfficeRepresentative,
-    getAllAdressOfficesThatHaveClientsFuenlabrada} from "./modules/clients.js"
+    getAllAdressOfficesThatHaveClientsFuenlabrada,
+    getAllClientsNameAndWithRepresentativesCityOffice,
+    getAllClientsNotDeliveredOnTime
+} from "./modules/clients.js"
     
 
 import {statusRequests,
@@ -34,6 +39,7 @@ import {getAllClientsMadePayment2008,
 
 import{getAllProductosGamaOrnamentals} from "./modules/products.js"
 
+import {getAllDifferentProductGamasOfClient} from "./modules/request_details.js"
 
 // Constantes declaradas
 
@@ -60,6 +66,11 @@ const queryMultitable3 = document.querySelector("#queryMultitable3")
 const queryMultitable4 = document.querySelector("#queryMultitable4")
 const queryMultitable5 = document.querySelector("#queryMultitable5")
 const queryMultitable6 = document.querySelector("#queryMultitable6")
+const queryMultitable7 = document.querySelector("#queryMultitable7")
+const queryMultitable8 = document.querySelector("#queryMultitable8")
+const queryMultitable9 = document.querySelector("#queryMultitable9")
+const queryMultitable10 = document.querySelector("#queryMultitable10")
+const queryMultitable11 = document.querySelector("#queryMultitable11") 
 
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
@@ -551,7 +562,6 @@ queryMultitable2.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 3
-
 queryMultitable3.addEventListener("click", async(e)=>{
     let [,report__container] = queryMultitable3.children
     if(!report__container.innerHTML){
@@ -577,7 +587,6 @@ queryMultitable3.addEventListener("click", async(e)=>{
     }
 })
 // EJERCICIO 4
-
 queryMultitable4.addEventListener("click", async(e)=>{
     let [,report__container] = queryMultitable4.children
     if(!report__container.innerHTML){
@@ -605,7 +614,6 @@ queryMultitable4.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 5
-
 queryMultitable5.addEventListener("click", async(e)=>{
     let [,report__container] = queryMultitable5.children
     if(!report__container.innerHTML){
@@ -633,7 +641,6 @@ queryMultitable5.addEventListener("click", async(e)=>{
 })
 
 // EJERCICIO 6
-
 queryMultitable6.addEventListener("click", async(e)=>{
     let [,report__container] = queryMultitable6.children
     if(!report__container.innerHTML){
@@ -659,3 +666,137 @@ queryMultitable6.addEventListener("click", async(e)=>{
     }
 })
 
+
+// EJERCICIO 7
+queryMultitable7.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable7.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsNameAndWithRepresentativesCityOffice();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div>${val.client_name}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Representante: </b> ${val.employee_sales_manager}</p>
+                        <p><b>Ciudad de la oficina 2: </b> ${val.office_city}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 8
+
+queryMultitable8.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable8.children
+    if(!report__container.innerHTML){
+        let data = await getAllEmployeesAndSupervisors();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Empleado: </b>${val.nombre_empleado}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre del jefe: </b> ${val.nombre_jefe}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+
+// EJERCICIO 9
+
+queryMultitable9.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable9.children
+    if(!report__container.innerHTML){
+        let data = await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Empleado: </b>${val.nombre_empleado}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Jefe: </b> ${val.nombre_jefe}</p>
+                        <p><b>Jefe del jefe: </b> ${val.nombre_jefe_jefe}</p>
+
+                        
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 10
+
+queryMultitable10.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable10.children
+    if(!report__container.innerHTML){
+        let data = await getAllClientsNotDeliveredOnTime();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p>${val}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 11
+
+queryMultitable11.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable11.children
+    if(!report__container.innerHTML){
+        let data = await getAllDifferentProductGamasOfClient();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+            <div class="report__card">
+            <div class="card__title">
+                <div>${val.client_name}</div>
+            </div>
+            <div class="card__body">
+                <div class="body__marck">
+                    <p>${val.gamas}</p>
+
+                    
+                </div>
+            </div>
+        </div>
+        `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})

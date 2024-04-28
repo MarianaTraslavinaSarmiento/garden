@@ -93,7 +93,7 @@ import {
 // console.log(await getAllEmployeesAndSupervisors())
 // console.log(await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors())
 // console.log(await getAllClientsNotDeliveredOnTime())
-// console.log(await getAllDifferentProductGamasOfClient())
+console.log(await getAllDifferentProductGamasOfClient())
 // console.log(await getAllClientsThayNOTmadeAnyPayment())
 
 // -------------------------- MODULOS -------------------------------
