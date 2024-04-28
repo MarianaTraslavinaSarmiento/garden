@@ -23,7 +23,8 @@ import {
     getAllAdressOfficesThatHaveClientsFuenlabrada,
     getAllClientsNameAndWithRepresentativesCityOffice,
     getAllClientsNotDeliveredOnTime,
-    getAllClientsThayNOTmadeAnyPayment
+    getAllClientsThayNOTmadeAnyPayment,
+    getAllClientsThatNOTMadeRequest
 
 }from "./modules/clients.js"
 
@@ -82,9 +83,15 @@ import {
 // console.log(await getAllEmployeesAndSupervisors())
 // console.log(await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors())
 // console.log(await getAllClientsNotDeliveredOnTime())
-console.log(await getAllDifferentProductGamasOfClient())
+// console.log(await getAllDifferentProductGamasOfClient())
 // console.log(await getAllClientsThayNOTmadeAnyPayment())
 
 // -------------------------- MODULOS -------------------------------
 
 //console.log(await getAllRepresentatives())
+
+
+// ------------------------- CONSULTAS COMPOSICION EXTERNA -------------------------
+// console.log(await getAllClientsThayNOTmadeAnyPayment ());
+console.log(await getAllClientsThatNOTMadeRequest ());
+

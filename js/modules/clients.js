@@ -320,6 +320,29 @@ export const getAllClientsThayNOTmadeAnyPayment = async()=>{
 }
 
 
+//2. Devuelve un listado que muestre solamente los clientes que no han realizado ningún pedido.
+
+export const getAllClientsThatNOTMadeRequest = async () =>{
+
+    let allClients = await getAllClients()
+    let allRequests = await getAllRequests()
+    let dataUpdate = new Set()
+
+    for (let client of allClients){
+        let pedidoEncontrado = false
+        for (let request of allRequests){
+            if (request.code_client == client.client_code){
+                pedidoEncontrado = true
+            }
+        }
+        if (!pedidoEncontrado){
+            dataUpdate.add(JSON.stringify(client))
+        }
+    }
+
+    return Array.from(dataUpdate).map(element => JSON.parse(element))
+}
+
 
 
 
