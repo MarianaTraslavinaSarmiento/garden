@@ -23,11 +23,11 @@ export const getAllDifferentProductGamasOfClient = async() => {
         for (let request of allRequests){
             if (request.code_client == client.code_client){
                 for (let requestDetail of data){
-                    if (request.code_request == data.code_request){
+                    if (request.code_request == requestDetail.code_request){
                         for (let product of allProducts){
                             if (requestDetail.code_product == product.code_product){
                                 let {gama} = product 
-                                datosCliente.boughtGamas.add(gama)
+                                resultado.boughtGamas.add(gama)
                             }
                         }
                     }
@@ -40,7 +40,6 @@ export const getAllDifferentProductGamasOfClient = async() => {
             dataUpdate.push(resultado)
         }
     }
-
     return dataUpdate
 }                               
 

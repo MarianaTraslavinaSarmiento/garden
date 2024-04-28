@@ -47,7 +47,7 @@ import {
 }from "./modules/products.js"
 
 import {
-    getAllDifferentProductGamasOfClient
+    getAllDifferentProductGamasOfClient,
 }from "./modules/request_details.js"
 // -------------------------- CONSULTAS -------------------------------
 
