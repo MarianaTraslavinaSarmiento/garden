@@ -344,6 +344,20 @@ export const getAllClientsThatNOTMadeRequest = async () =>{
 }
 
 
+//3.Devuelve un listado que muestre los clientes que no han realizado ningún pago y los que no han realizado ningún pedido.
+
+export const getAllClientsWithNotPaymentAndRequest = async () =>{
+
+    let allNotPayments = await getAllClientsThayNOTmadeAnyPayment()
+    let allNotRequests = await getAllClientsThatNOTMadeRequest()
+    let dataUpdate = [...allNotPayments, ...allNotRequests]
+    dataUpdate = dataUpdate.map(element => JSON.stringify(element))
+    dataUpdate = Array.from(new Set(dataUpdate))
+    dataUpdate = dataUpdate.map(element => JSON.parse(element))
+
+
+    return dataUpdate
+}
 
 
 // ------------------------------ MODULOS----------------------------------
