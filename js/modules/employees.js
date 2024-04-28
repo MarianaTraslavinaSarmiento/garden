@@ -199,6 +199,18 @@ export const getAllEmployeesWhitoutClientsAndDataOffice = async () =>{
     return allEmployeesWithoutClients
 }
 
+//7. Devuelve un listado que muestre los empleados que no tienen una oficina asociada y los que no tienen un cliente asociado.
+
+export const getEmployeesThatNotHaveOfficeAndClients = async() => {
+    let allEmployeesNotHaveOffice = await getAllEmployeesNotHaveOffice()
+    let allEmployeesWithoutClients = await getAllEmployeesWithoutClients ()
+    let dataUpdate = [...allEmployeesNotHaveOffice, ...allEmployeesWithoutClients]
+    dataUpdate = dataUpdate.map(element => JSON.stringify(element))
+    dataUpdate = Array.from(new Set(dataUpdate))
+    dataUpdate = dataUpdate.map(element => JSON.parse(element))
+    return dataUpdate
+}
+
 
 
 

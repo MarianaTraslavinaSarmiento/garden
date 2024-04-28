@@ -12,7 +12,8 @@ import {
     getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors,
     getAllEmployeesNotHaveOffice,
     getAllEmployeesWithoutClients,
-    getAllEmployeesWhitoutClientsAndDataOffice
+    getAllEmployeesWhitoutClientsAndDataOffice,
+    getEmployeesThatNotHaveOfficeAndClients
 }from "./modules/employees.js"
 
 import {
@@ -49,12 +50,16 @@ import {
 
 import {
     getAllProductosGamaOrnamentals,
+    getAllProductsNeverAppearedInARequest
     
 }from "./modules/products.js"
 
 import {
     getAllDifferentProductGamasOfClient,
 }from "./modules/request_details.js"
+
+
+
 // -------------------------- CONSULTAS -------------------------------
 
 // console.log(await getAllCodeAndCityOffices())  
@@ -101,5 +106,6 @@ import {
 // console.log(await getAllClientsWithNotPaymentAndRequest());
 // console.log(await getAllEmployeesNotHaveOffice() );
 // console.log(await getAllEmployeesWithoutClients());
-console.log(await getAllEmployeesWhitoutClientsAndDataOffice());
-
+// console.log(await getAllEmployeesWhitoutClientsAndDataOffice());
+// console.log(await getEmployeesThatNotHaveOfficeAndClients());
+console.log(await getAllProductsNeverAppearedInARequest());
