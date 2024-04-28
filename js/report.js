@@ -16,7 +16,8 @@ import {getAllClientsFromSpain,
     getAllClientsMadePaymentsAndNameRepresentative,
     getAllClientNOTMadePaymentsAndNameRepresentative,
     getAllClientsThatMadePaymentsAndOfficeRepresentative,
-    getAllClientsThatNotMadePaymentsAndOfficeRepresentative} from "./modules/clients.js"
+    getAllClientsThatNotMadePaymentsAndOfficeRepresentative,
+    getAllAdressOfficesThatHaveClientsFuenlabrada} from "./modules/clients.js"
     
 
 import {statusRequests,
@@ -58,6 +59,7 @@ const queryMultitable2 = document.querySelector("#queryMultitable2")
 const queryMultitable3 = document.querySelector("#queryMultitable3")
 const queryMultitable4 = document.querySelector("#queryMultitable4")
 const queryMultitable5 = document.querySelector("#queryMultitable5")
+const queryMultitable6 = document.querySelector("#queryMultitable6")
 
 queryAboutTable1.addEventListener("click", async(e)=>{
     let [,report__container] = queryAboutTable1.children
@@ -621,6 +623,33 @@ queryMultitable5.addEventListener("click", async(e)=>{
                         <p><b>Nombre: </b> ${val.nombre_representante}</p>
                         <p><b>Apellido: </b> ${val.apellidos_representante}</p>
                         <p><b>Ciudad oficina: </b> ${val.ciudad_oficina}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+        report__container.innerHTML = plantilla;
+    }
+})
+
+// EJERCICIO 6
+
+queryMultitable6.addEventListener("click", async(e)=>{
+    let [,report__container] = queryMultitable6.children
+    if(!report__container.innerHTML){
+        let data = await getAllAdressOfficesThatHaveClientsFuenlabrada();
+        let plantilla = "";
+        console.log(data);
+        data.forEach(val => {
+            plantilla += `
+                <div class="report__card">
+                <div class="card__title">
+                    <div><b>Código de oficina:</b> ${val.code_office}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Dirección 1: </b> ${val.address1}</p>
+                        <p><b>Dirección 2: </b> ${val.address2}</p>
                     </div>
                 </div>
             </div>

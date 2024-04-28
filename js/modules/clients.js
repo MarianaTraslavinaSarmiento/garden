@@ -220,7 +220,7 @@ export const getAllAdressOfficesThatHaveClientsFuenlabrada = async() =>{
                         if (client.city == "Fuenlabrada") {
                             dataUpdate.add(JSON.stringify({
                                 code_office: office.code_office,
-                                address: office.address1,
+                                address1: office.address1,
                                 address2: (office.address2 || "No registrado")
                             }))
                         }
