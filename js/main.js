@@ -11,7 +11,8 @@ import {
     getAllEmployeesAndSupervisors,
     getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors,
     getAllEmployeesNotHaveOffice,
-    getAllEmployeesWithoutClients
+    getAllEmployeesWithoutClients,
+    getAllEmployeesWhitoutClientsAndDataOffice
 }from "./modules/employees.js"
 
 import {
@@ -99,5 +100,6 @@ import {
 // console.log(await getAllClientsThatNOTMadeRequest ());
 // console.log(await getAllClientsWithNotPaymentAndRequest());
 // console.log(await getAllEmployeesNotHaveOffice() );
-console.log(await getAllEmployeesWithoutClients());
+// console.log(await getAllEmployeesWithoutClients());
+console.log(await getAllEmployeesWhitoutClientsAndDataOffice());
 

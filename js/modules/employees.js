@@ -179,6 +179,29 @@ export const getAllEmployeesWithoutClients = async() => {
     return Array.from(dataUpdate).map(element => JSON.parse(element))
 }
 
+// 6. Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado junto con los datos de la oficina donde trabajan.
+
+export const getAllEmployeesWhitoutClientsAndDataOffice = async () =>{
+
+    let allEmployeesWithoutClients = await getAllEmployeesWithoutClients()
+    let allOffices = await getAllOffices()
+
+    for (let employee of allEmployeesWithoutClients){
+        for (let office of allOffices){
+            if (employee.code_office == office.code_office){
+                employee.code_office = office
+
+            }
+
+        }
+    }
+
+    return allEmployeesWithoutClients
+}
+
+
+
+
 // ------------------ MODULOS --------------------
 
 export const getAllRepresentatives = async()=>{
