@@ -44,6 +44,21 @@ export const getAllProductsNeverAppearedInARequest = async() =>{
 }
 
 
+//9. Devuelve un listado de los productos que nunca han aparecido en un pedido. El resultado debe mostrar el nombre, la descripción y la imagen del producto.
+
+export const getAllProductsNeverAppearedRequestAndSomeDetails = async() => {
+    let allProductsNeverAppearedInARequest  = await getAllProductsNeverAppearedInARequest()
+    let dataUpdate = []
+
+    for (let product of allProductsNeverAppearedInARequest ) {
+        dataUpdate.push({
+            name: product.name,
+            description: product.description || "Sin descripcion"
+        })
+    }
+    return dataUpdate
+}
+
 export const getAllProducts = async() => {
     let res = await fetch("http://localhost:5506/products")
     let data = await res.json()

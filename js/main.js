@@ -50,7 +50,8 @@ import {
 
 import {
     getAllProductosGamaOrnamentals,
-    getAllProductsNeverAppearedInARequest
+    getAllProductsNeverAppearedInARequest,
+    getAllProductsNeverAppearedRequestAndSomeDetails
     
 }from "./modules/products.js"
 
@@ -108,4 +109,5 @@ import {
 // console.log(await getAllEmployeesWithoutClients());
 // console.log(await getAllEmployeesWhitoutClientsAndDataOffice());
 // console.log(await getEmployeesThatNotHaveOfficeAndClients());
-console.log(await getAllProductsNeverAppearedInARequest());
+// console.log(await getAllProductsNeverAppearedInARequest());
+console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
