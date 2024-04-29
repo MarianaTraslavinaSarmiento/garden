@@ -1,7 +1,7 @@
 import {getAllEmployees, getAllRepresentatives} from "./employees.js"
 import {getAllClients} from "./clients.js"
 import {getAllRequests} from "./requests.js"
-import {getAllRequestDetails} from "./request_details.js"
+import {getAllDifferentProductGamasOfClient} from "./request_details.js"
 import {getAllProducts} from "./products.js"
 
 
@@ -45,46 +45,39 @@ export const getAllOfficesFromSpainCityAndMovil = async() =>{
 
 // // 10. Devuelve las oficinas donde no trabajan ninguno de los empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama Frutales.
 
-//     //Recorrer todos los pedidos
-    
-//     //Necesito devolver las oficinas donde no trabaja Y, el cual me atendio a mi y yo hice una compra con la gama frutales
+export const getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct = async() => {
+    let allGamasByClient = await getAllDifferentProductGamasOfClient()
+    let allRepresentatives = await getAllRepresentatives()
+    let allOffices = await getAllOffices()
+    let SellersThatNot = []
+    let dataUpdate = []
 
-//     // recorrer los representantes de ventas 
-//     // 
+    for (let representative of allRepresentatives) {
+        for (let client of allGamasByClient) {
+            if (client.code_employee_sales_manager == representative.codigo){
+                if (client.resultado.includes('Frutales')) {
+                    SellersThatNot.push(representative)
+                }
 
+            }
+        }
+    }
 
+    // Oficinas que no incluyan estos vendedores
+    for (let office of allOffices) {
+        let sellerFound = false
+        for (let employee of SellersThatNot) {
+            if (office.code_office == employee.code_office) {
+                sellerFound= true
+            }
+        }
+        if (!sellerFound) {
+            dataUpdate.push(office)
+        }
+    }
 
-
-
-
-
-//     // recorrer los empleados que han sido represantes de ventas 
-    
-//     //si el codigo de los empleados que han sido representantes de ventas coincide con el codigo de empleado de algun cliente
-
-
-
-//     //recorrer los codigos de los pedidos, luego si el codigo del pedido en los detalles del pedido coincide, entonces revisa el codigo del prodentonces destructura el codigo del producto y si coincide con algun codigo del producto revisa la gama
-
-
-//     // revisar si el cliente hizo alguna compra de un producto frutales
-//     // Si lo anterior es false, revisar el codigo de oficina del cliente
-//     // revisar el codigo del empleado
-//     // revisar el codigo de la oficina del empleado
-//     //pushearlo al dataUpdate
-
-// // export const getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct = async () =>{
-
-// //     let allRepresentatives = await getAllRepresentatives()
-// //     let allClients = await getAllClients()
-// //     let allRequests = await getAllRequests()
-// //     let allProducts = await getAllProducts ()
-// //     let allEmployees = await getAllEmployees()
-// //     let allDetailsRequests = await getAllRequestDetails()
-// //     let dataUpdate = []
-
-
-// // }
+    return dataUpdate
+}
 
 // //MODULOS 
 

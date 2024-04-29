@@ -1,7 +1,8 @@
 
 import{
     getAllCodeAndCityOffices,
-    getAllOfficesFromSpainCityAndMovil} from "./modules/offices.js"
+    getAllOfficesFromSpainCityAndMovil,
+    getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct} from "./modules/offices.js"
 
 import {
     getAllEmployeesWithBossAndCodeSeven,
@@ -93,7 +94,7 @@ import {
 // console.log(await getAllEmployeesAndSupervisors())
 // console.log(await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors())
 // console.log(await getAllClientsNotDeliveredOnTime())
-console.log(await getAllDifferentProductGamasOfClient())
+// console.log(await getAllDifferentProductGamasOfClient())
 // console.log(await getAllClientsThayNOTmadeAnyPayment())
 
 // -------------------------- MODULOS -------------------------------
@@ -111,4 +112,4 @@ console.log(await getAllDifferentProductGamasOfClient())
 // console.log(await getEmployeesThatNotHaveOfficeAndClients());
 // console.log(await getAllProductsNeverAppearedInARequest());
 // console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
-// console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
+console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
