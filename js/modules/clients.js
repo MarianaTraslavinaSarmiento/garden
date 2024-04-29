@@ -2,6 +2,7 @@ import {getAllRepresentatives} from "./employees.js"
 import {getAllPayments} from "./payments.js"
 import {getAllOffices} from "./offices.js"
 import {getAllRequests} from "./requests.js"
+import { getAllEmployees, getAllEmployeesWithoutClients } from "./employees.js"
 
 
 
@@ -360,8 +361,57 @@ export const getAllClientsWithNotPaymentAndRequest = async () =>{
 }
 
 
+//11.Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago
+
+export const getAllClientsThatMadeRequestButNotPayment = async () =>{
+
+    let allClients = await getAllClients()
+    let allPayments = await getAllPayments()
+    let allRequests = await getAllRequests()
+    let dataUpdate = new Set()
+
+    for (let client of allClients){
+        let requestEncontrado = false
+        for (let request of allRequests){
+            if (request.code_client == client.client_code){
+                requestEncontrado = true
+            }
+        }
+        if (requestEncontrado){
+            let paymentEncontrado = false
+            for (let payment of allPayments){
+                if (payment.code_client == client.client_code){
+                    paymentEncontrado = true
+                }
+
+            }
+            if (!paymentEncontrado){
+                dataUpdate.add(JSON.stringify(client))
+            }
+        }
+
+    }
+
+    return Array.from(dataUpdate).map(element => JSON.parse(element))
+}
 
 
+// 12. Devuelve un listado con los datos de los empleados que no tienen clientes asociados y el nombre de su jefe asociado.
+
+export const getAllEmployeesWithoutClientsAndBoss = async() => {
+    let allEmployees = await getAllEmployees()
+    let allEmployeesWithoutClients = await getAllEmployeesWithoutClients()
+
+    for (let employee of allEmployeesWithoutClients) {
+        for (let boss of allEmployees) {
+            if (employee.code_boss == boss.employee_code) {
+                employee.name_boss = `${boss.name} ${boss.lastname1} ${boss.lastname2}`
+            }
+        }
+    }
+
+    return allEmployeesWithoutClients
+}
 
 
 

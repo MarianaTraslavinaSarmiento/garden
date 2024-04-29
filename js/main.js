@@ -30,7 +30,9 @@ import {
     getAllClientsNotDeliveredOnTime,
     getAllClientsThayNOTmadeAnyPayment,
     getAllClientsThatNOTMadeRequest,
-    getAllClientsWithNotPaymentAndRequest
+    getAllClientsWithNotPaymentAndRequest,
+    getAllClientsThatMadeRequestButNotPayment,
+    getAllEmployeesWithoutClientsAndBoss 
 
 }from "./modules/clients.js"
 
@@ -112,4 +114,6 @@ import {
 // console.log(await getEmployeesThatNotHaveOfficeAndClients());
 // console.log(await getAllProductsNeverAppearedInARequest());
 // console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
-console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
+// console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
+// console.log(await getAllClientsThatMadeRequestButNotPayment());
+console.log(await getAllEmployeesWithoutClientsAndBoss());
