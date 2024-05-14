@@ -1631,7 +1631,13 @@ btn.forEach(val =>{
         }
         if(e.target.innerHTML=="employees"){
             report__details.innerHTML = /*html*/`
-            
+
+                <my-details logic="employee_3" text="3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo jefe tiene un código de jefe igual a 7."></my-details>
+                <my-details logic="employee_4" text="4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la empresa."></my-details>
+                <my-details logic="employee_5" text="5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas."></my-details>
+                <my-details logic="employee_8" text="8. Devuelve un listado con el nombre de los empleados junto con el nombre de sus jefes."></my-details>
+                <my-details logic="employee_9" text="9. Devuelve un listado que muestre el nombre de cada empleados, el nombre de su jefe y el nombre del jefe de sus jefe."></my-details>
+
             `;
         }
 

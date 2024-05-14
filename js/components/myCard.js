@@ -8,8 +8,18 @@ import {
     getAllClientsThatNotMadePaymentsAndOfficeRepresentative,
     getAllAdressOfficesThatHaveClientsFuenlabrada,
     getAllClientsNameAndWithRepresentativesCityOffice,
-    getAllClientsNotDeliveredOnTime
+    getAllClientsNotDeliveredOnTime,
+
 } from "../modules/clients.js";
+
+import {
+    getAllEmployeesWithBossAndCodeSeven,
+    getAllInformationBoss,
+    getAllNotSalesRepresentative,
+    getAllEmployeesAndSupervisors,
+    getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors
+
+} from "../modules/employees.js";
 
 export class Mycard extends HTMLElement{
     constructor(){
@@ -241,6 +251,109 @@ export class Mycard extends HTMLElement{
         });
     }
 
+    // ------------------------------------------- EMPLOYEES -------------------------------------------------------
+
+    async getAllEmployeesWithBossAndCodeSevenDesign(){
+        let data = await getAllEmployeesWithBossAndCodeSeven();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>${val.email}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Nombre: </b> ${val.nombre}</p>
+                            <p><b>Apellidos: </b> ${val.apellidos}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    }    
+
+    async getAllInformationBossDesign(){
+        let data = await getAllInformationBoss();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+            <div class="report__card">
+                <div class="card__title">
+                    <div>${val.puesto}</div>
+                </div>
+                <div class="card__body">
+                    <div class="body__marck">
+                        <p><b>Nombre: </b> ${val.nombre}</p>
+                        <p><b>Apellidos: </b> ${val.apellidos}</p>
+                        <p><b>Email: </b> ${val.email}</p>
+                    </div>
+                </div>
+            </div>
+                
+            `;
+        });
+    }  
+
+    async getAllNotSalesRepresentativeDesign(){
+        let data = await getAllNotSalesRepresentative();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+            <div class="report__card">
+                <div class="report__card">
+                    <div class="card__title">
+                <div>${val.puesto}</div>
+                </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Nombre: </b> ${val.nombre}</p>
+                            <p><b>Apellidos: </b> ${val.apellidos}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+    async getAllEmployeesAndSupervisorsDesign(){
+        let data = await getAllEmployeesAndSupervisors();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Empleado: </b>${val.nombre_empleado}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Nombre del jefe: </b> ${val.nombre_jefe}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+
+    async getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisorsDesign(){
+        let data = await getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisors();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Empleado: </b>${val.nombre_empleado}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Jefe: </b> ${val.nombre_jefe}</p>
+                            <p><b>Jefe del jefe: </b> ${val.nombre_jefe_jefe}</p>             
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    }
 
 
     static get observedAttributes() {
@@ -258,6 +371,13 @@ export class Mycard extends HTMLElement{
         if(name=="logic" && now=="client_7") this.getAllClientsNameAndWithRepresentativesCityOfficeDesign()
         if(name=="logic" && now=="client_10") this.getAllClientsNotDeliveredOnTimeDesign()
         if(name=="logic" && now=="client_16") this.getAllClientsFromSpainAndRepresentative11Or30Design()
+
+        if(name=="logic" && now=="employee_3") this.getAllEmployeesWithBossAndCodeSevenDesign()
+        if(name=="logic" && now=="employee_4") this.getAllInformationBossDesign()
+        if(name=="logic" && now=="employee_5") this.getAllNotSalesRepresentativeDesign()
+        if(name=="logic" && now=="employee_8") this.getAllEmployeesAndSupervisorsDesign()
+        if(name=="logic" && now=="employee_9") this.getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisorsDesign()
+
         
     }
 }
