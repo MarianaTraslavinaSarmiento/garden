@@ -32,6 +32,8 @@ import {
     getAllPaypalPayments2008
     
 } from "../modules/payments.js"
+import { getAllProductosGamaOrnamentals } from "../modules/products.js";
+import { getAllDifferentProductGamasOfClient } from "../modules/request_details.js";
 
 export class Mycard extends HTMLElement{
     constructor(){
@@ -464,6 +466,56 @@ export class Mycard extends HTMLElement{
         });
     } 
 
+    // ------------------------------ PRODUCTS ------------------------------
+
+    async getAllProductosGamaOrnamentalsDesign(){
+        let data = await getAllProductosGamaOrnamentals();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>${val.name}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo del producto: </b> ${val.code_product}</p>
+                            <p><b>Gama: </b> ${val.gama}</p>
+                            <p><b>Medida: </b> ${val.dimension}</p>
+                            <p><b>Proveedor: </b> ${val.provider}</p>
+                            <p><b>Descripción: </b> ${val.description  || "No registrado"}</p>
+                            <p><b>Cantidad: </b> ${val.stock}</p>
+                            <p><b>Precio de venta: </b> ${val.price_sale}</p>
+                            <p><b>Precio de proveedor: </b> ${val.price_provider}</p>
+                            <p><b>ID: </b> ${val.id}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+    //------------------------------- REQUESTS DETAILS -------------------------------
+
+    async getAllDifferentProductGamasOfClientDesign(){
+        let data = await getAllDifferentProductGamasOfClient();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>${val.client_name}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p>${val.gamas}</p>    
+
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    } 
 
 
     static get observedAttributes() {
@@ -494,6 +546,11 @@ export class Mycard extends HTMLElement{
         if(name=="logic" && now=="payment_8") this.getAllClientsMadePayment2008Design()
         if(name=="logic" && now=="payment_13") this.getAllClientsMadePayment2008Design()
         if(name=="logic" && now=="payment_14") this.getAllPaymentTypesDesign()
+
+        if(name=="logic" && now=="product_15") this.getAllProductosGamaOrnamentalsDesign()
+
+        if(name=="logic" && now=="request_detail_11") this.getAllDifferentProductGamasOfClientDesign()
+
 
         
     }

@@ -1663,6 +1663,25 @@ btn.forEach(val =>{
         
         }
 
+        if(e.target.innerHTML == "product"){
+            report__details.innerHTML= /*html*/ `
+            
+                <my-details logic="product_15" text="15. Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, mostrando en primer lugar los de mayor precio."></my-details>
+
+            `     
+        
+        }
+
+        if(e.target.innerHTML == "request details"){
+            report__details.innerHTML= /*html*/ `
+            
+                <my-details logic="request_detail_11" text="11. Devuelve un listado de las diferentes gamas de producto que ha comprado cada cliente."></my-details>
+
+            `     
+        
+        }
+
+
 
 
     })
