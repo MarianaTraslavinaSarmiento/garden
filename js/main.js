@@ -116,4 +116,5 @@ import {
 // console.log(await getAllProductsNeverAppearedRequestAndSomeDetails());
 // console.log(await getAllOfficesNotWorkAnyEmployeesThatWereSalesAgentsOfClientThatMadeAFrutalesProduct());
 // console.log(await getAllClientsThatMadeRequestButNotPayment());
-console.log(await getAllEmployeesWithoutClientsAndBoss());
+// console.log(await getAllEmployeesWithoutClientsAndBoss());
+
