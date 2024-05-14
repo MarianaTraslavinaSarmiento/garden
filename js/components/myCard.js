@@ -26,6 +26,13 @@ import {
     getAllOfficesFromSpainCityAndMovil
 } from "../modules/offices.js"
 
+import {
+    getAllClientsMadePayment2008, 
+    getAllPaymentTypes, 
+    getAllPaypalPayments2008
+    
+} from "../modules/payments.js"
+
 export class Mycard extends HTMLElement{
     constructor(){
         super();
@@ -399,6 +406,66 @@ export class Mycard extends HTMLElement{
     } 
 
 
+    // -------------------------------- PAYMENTS --------------------------------
+
+    async getAllClientsMadePayment2008Design(){
+        let data = await getAllClientsMadePayment2008();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo cliente: </b> ${val}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+    async getAllClientsMadePayment2008Design(){
+        let data = await getAllPaypalPayments2008();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>ID del pago: </b>${val.id}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Pago realizado por: </b> ${val.payment}</p>
+                            <p><b>ID transacción: </b> ${val.id_transaction}</p>
+                            <p><b>Fecha del pago: </b> ${val.date_payment}</p>
+                            <p><b>Total: </b> ${val.total}</p>
+                            <p><b>Comentario: </b> ${val.comment}</p>
+                            <p><b>Código del cliente: </b> ${val.code_client}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+    async getAllPaymentTypesDesign(){
+        let data = await getAllPaymentTypes();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__car">
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p>${val}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
+
+
     static get observedAttributes() {
         return ["logic"];
     }
@@ -423,6 +490,10 @@ export class Mycard extends HTMLElement{
 
         if(name=="logic" && now=="office_1") this.getAllCodeAndCityOfficesDesign()
         if(name=="logic" && now=="office_2") this.getAllOfficesFromSpainCityAndMovilDesign()
+
+        if(name=="logic" && now=="payment_8") this.getAllClientsMadePayment2008Design()
+        if(name=="logic" && now=="payment_13") this.getAllClientsMadePayment2008Design()
+        if(name=="logic" && now=="payment_14") this.getAllPaymentTypesDesign()
 
         
     }
