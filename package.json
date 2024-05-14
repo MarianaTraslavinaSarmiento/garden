@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch js/main.js",
+    "start-all": "npm run clients & npm run employees & npm run gama & npm run offices & npm run payments & npm run products & npm run request_details & npm run requests",
     "clients": "json-server js/db/clients.json -p 5501",
     "employees": "json-server js/db/employees.json -p 5502",
     "gama": "json-server js/db/gama.json -p 5503",
