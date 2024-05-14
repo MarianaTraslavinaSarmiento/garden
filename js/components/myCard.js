@@ -21,6 +21,11 @@ import {
 
 } from "../modules/employees.js";
 
+import {
+    getAllCodeAndCityOffices,
+    getAllOfficesFromSpainCityAndMovil
+} from "../modules/offices.js"
+
 export class Mycard extends HTMLElement{
     constructor(){
         super();
@@ -355,6 +360,44 @@ export class Mycard extends HTMLElement{
         });
     }
 
+    // ------------------------------- OFFICES -------------------------------
+
+    async getAllCodeAndCityOfficesDesign(){
+        let data = await getAllCodeAndCityOffices();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Codigo: </b>${val.codigo}</p>
+                            <p><b>Ciudad: </b>${val.ciudad}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    }
+
+    async getAllOfficesFromSpainCityAndMovilDesign(){
+        let data = await getAllOfficesFromSpainCityAndMovil();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div>${val.ciudad}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Teléfono: </b> ${val.telefono}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            `;
+        });
+    } 
+
 
     static get observedAttributes() {
         return ["logic"];
@@ -377,6 +420,9 @@ export class Mycard extends HTMLElement{
         if(name=="logic" && now=="employee_5") this.getAllNotSalesRepresentativeDesign()
         if(name=="logic" && now=="employee_8") this.getAllEmployeesAndSupervisorsDesign()
         if(name=="logic" && now=="employee_9") this.getAllEmployeesAndSupervisorsAndSupervisorsOfSupervisorsDesign()
+
+        if(name=="logic" && now=="office_1") this.getAllCodeAndCityOfficesDesign()
+        if(name=="logic" && now=="office_2") this.getAllOfficesFromSpainCityAndMovilDesign()
 
         
     }
