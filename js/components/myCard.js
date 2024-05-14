@@ -34,6 +34,7 @@ import {
 } from "../modules/payments.js"
 import { getAllProductosGamaOrnamentals } from "../modules/products.js";
 import { getAllDifferentProductGamasOfClient } from "../modules/request_details.js";
+import { getAllRequestOfJanuary, getAllRequestsDelivered2DaysAgo, getAllRequestsDeliveredLate, getAllRequestsRejectedIn2009, statusRequests } from "../modules/requests.js";
 
 export class Mycard extends HTMLElement{
     constructor(){
@@ -517,6 +518,116 @@ export class Mycard extends HTMLElement{
         });
     } 
 
+    // ------------------------------- REQUESTS -------------------------------
+
+    async statusRequestsDesign(){
+        let data = await statusRequests();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Estado: </b>${val}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    } 
+
+    async getAllRequestsDeliveredLateDesign(){
+        let data = await getAllRequestsDeliveredLate();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Código del pedido: </b>${val.codigo_pedido}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Código del pedido: </b> ${val.codigo_cliente}</p>
+                            <p><b>Fecha esperada: </b> ${val.fecha_esperada}</p>
+                            <p><b>Fecha entrega: </b> ${val.fecha_entrega}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    } 
+
+    async getAllRequestsDelivered2DaysAgoDesign(){
+        let data = await getAllRequestsDelivered2DaysAgo();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Código del pedido: </b>${val.codigo_pedido}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Código del cliente: </b> ${val.codigo_cliente}</p>
+                            <p><b>Fecha esperada: </b> ${val.fecha_esperada}</p>
+                            <p><b>Fecha entrega: </b> ${val.fecha_entrega}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    } 
+
+    async getAllRequestsRejectedIn2009Design(){
+        let data = await getAllRequestsRejectedIn2009();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Código del pedido: </b>${val.code_request}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Fecha del pedido: </b> ${val.date_request}</p>
+                            <p><b>Fecha esperada: </b> ${val.date_wait}</p>
+                            <p><b>Fecha entrega: </b> ${val.date_delivery}</p>
+                            <p><b>Estado: </b> ${val.status}</p>
+                            <p><b>Comentario: </b> ${val.comment}</p>
+                            <p><b>Código del cliente: </b> ${val.code_client}</p>
+                            <p><b>ID del cliente: </b> ${val.id}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    }
+
+    async getAllRequestOfJanuaryDesign(){
+        let data = await getAllRequestOfJanuary();
+        data.forEach(val => {
+            this.shadowRoot.innerHTML += /*html*/`
+                <div class="report__card">
+                    <div class="card__title">
+                        <div><b>Código del pedido: </b>${val.code_request}</div>
+                    </div>
+                    <div class="card__body">
+                        <div class="body__marck">
+                            <p><b>Fecha del pedido: </b> ${val.date_request}</p>
+                            <p><b>Fecha esperada: </b> ${val.date_wait}</p>
+                            <p><b>Fecha entrega: </b> ${val.date_delivery}</p>
+                            <p><b>Estado: </b> ${val.status}</p>
+                            <p><b>Comentario: </b> ${val.comment  || "No aplica"}</p>
+                            <p><b>Código del cliente: </b> ${val.code_client}</p>
+                            <p><b>ID del cliente: </b> ${val.id}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+        });
+    }
+
 
     static get observedAttributes() {
         return ["logic"];
@@ -550,6 +661,12 @@ export class Mycard extends HTMLElement{
         if(name=="logic" && now=="product_15") this.getAllProductosGamaOrnamentalsDesign()
 
         if(name=="logic" && now=="request_detail_11") this.getAllDifferentProductGamasOfClientDesign()
+
+        if(name=="logic" && now=="request_7") this.statusRequestsDesign()
+        if(name=="logic" && now=="request_9") this.getAllRequestsDeliveredLateDesign()
+        if(name=="logic" && now=="request_10") this.getAllRequestsDelivered2DaysAgoDesign()
+        if(name=="logic" && now=="request_11") this.getAllRequestsRejectedIn2009Design()
+        if(name=="logic" && now=="request_12") this.getAllRequestOfJanuaryDesign()
 
 
         
